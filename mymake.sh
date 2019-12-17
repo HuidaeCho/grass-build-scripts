@@ -3,7 +3,7 @@
 # It should be run from the root of the GRASS source code.
 #
 # Usage:
-#	mymake.sh
+#	mymake.sh clean default
 
 set -e
 

@@ -3,7 +3,7 @@
 # It should be run from the root of the GRASS addon asource code.
 #
 # Usage:
-#	myaddons.sh
+#	myaddons.sh clean default
 
 make \
 MODULE_TOPDIR=$HOME/usr/grass/grass/dist.x86_64-pc-linux-gnu \
