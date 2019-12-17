@@ -1,4 +1,10 @@
 #!/bin/sh
+# This script builds GRASS GIS for an architecture selected by switcharch.sh.
+# It should be run from the root of the GRASS source code.
+#
+# Usage:
+#	mymake.sh
+
 set -e
 
 MAKE=include/Make/Platform.make

@@ -1,4 +1,12 @@
 #!/bin/sh
+# This script switches the architecture before compiling GRASS GIS. It should
+# be run from the root of the GRASS source code.
+#
+# Usage:
+#	switcharch.sh		# for compiling native binaries
+#	switcharch.sh mxe	# for cross-compiling x86_64-w64-mingw32
+#				# binaries using MXE
+
 set -e
 
 backup() {

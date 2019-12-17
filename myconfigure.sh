@@ -1,4 +1,12 @@
 #!/bin/sh
+# This script configures include/Make/Platform.make and other files for
+# building GRASS GIS. It should be run from the root of the GRASS source code.
+#
+# Usage:
+#	myconfigure.sh		# for compiling native binaries
+#	myconfigure.sh mxe	# for cross-compiling x86_64-w64-mingw32
+#				# binaries using MXE
+
 set -e
 
 case "$1" in
@@ -32,6 +40,7 @@ case "$1" in
 mxe)
 	ARCH=x86_64-w64-mingw32
 	SHARED=$ARCH.shared
+	# you can change this path to yours
 	MXE=$HOME/usr/local/src/mxe/usr/$SHARED
 
 	CC=$SHARED-gcc \
