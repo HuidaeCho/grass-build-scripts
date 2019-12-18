@@ -1,4 +1,6 @@
 #!/bin/sh
+# This script configures gdal-grass plugins.
+
 set -e
 . ~/.grassbuildrc
 cd $GDAL_GRASS_SRC
