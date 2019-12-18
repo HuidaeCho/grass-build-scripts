@@ -15,7 +15,7 @@ if [ "$1" = "mxe" ]; then
 	../myconfigure.sh mxe
 	../mymake.sh clean default
 	../copydocs.sh
-	../mkfontcap.sh G:/grass
+	../postcompile.sh D:/opt/grass C:/Python38
 	../switcharch.sh
 fi
 
