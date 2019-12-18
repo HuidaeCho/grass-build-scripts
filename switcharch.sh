@@ -4,9 +4,9 @@
 #
 # Usage:
 #	switcharch.sh		# for compiling native binaries
-#	switcharch.sh mxe	# for cross-compiling x86_64-w64-mingw32
+#	switcharch.sh --mxe	# for cross-compiling x86_64-w64-mingw32
 #				# binaries using MXE
-#	switcharch.sh -q	# query the current architecture
+#	switcharch.sh --query	# query the current architecture
 
 set -e
 . ~/.grassbuildrc
@@ -49,7 +49,7 @@ else
 fi
 
 case "$1" in
-"-q")
+-q|--query)
 	if [ -z $CUR_ARCH ]; then
 		echo "Current architecture undefined"
 		exit 1
@@ -57,10 +57,10 @@ case "$1" in
 	echo "$CUR_ARCH: Current architecture"
 	exit
 	;;
-""|native)
+""|-n|--native)
 	ARCH=`sh ./config.guess`
 	;;
-mxe)
+-m|--mxe)
 	ARCH=x86_64-w64-mingw32
 	shift
 	;;

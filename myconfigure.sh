@@ -4,7 +4,7 @@
 #
 # Usage:
 #	myconfigure.sh		# for compiling native binaries
-#	myconfigure.sh mxe	# for cross-compiling x86_64-w64-mingw32
+#	myconfigure.sh --mxe	# for cross-compiling x86_64-w64-mingw32
 #				# binaries using MXE
 
 set -e
@@ -12,7 +12,7 @@ set -e
 cd $GRASS_SRC
 
 case "$1" in
-""|native)
+""|-n|--native)
 	CFLAGS="-g -O2 -Wall" \
 	CXXFLAGS="-g -O2 -Wall" \
 	LDFLAGS="-lcurses" \
@@ -39,7 +39,7 @@ case "$1" in
 	--with-pdal \
 	> myconfigure.log 2>&1
 	;;
-mxe)
+-m|--mxe)
 	ARCH=x86_64-w64-mingw32
 	SHARED=$ARCH.shared
 	MXE=$MXE_SRC/usr/$SHARED
