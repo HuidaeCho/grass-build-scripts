@@ -1,4 +1,8 @@
 #!/bin/sh
+# This script builds the native and cross-compilied versions of the GRASS GIS
+# core, native GRASS addons, and GDAL plugins. Currently, the GRASS build
+# scripts do not cross-compile GRASS addons and GDAL plugins.
+
 set -e
 . ~/.grassbuildrc
 
@@ -18,7 +22,7 @@ if [ "$1" = "mxe" ]; then
 	myconfigure.sh mxe
 	mymake.sh clean default
 	copydocs.sh
-	postcompile.sh D:/opt/grass C:/Python38
+	postcompile.sh
 	switcharch.sh
 fi
 

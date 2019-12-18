@@ -2,9 +2,17 @@
 # https://github.com/HuidaeCho/grass-build-scripts
 GRASS_BUILD_DIR=$HOME/usr/grass
 
+################################################################################
 # Cross-compilation environment
 # https://mxe.cc/
 MXE_SRC=$HOME/usr/local/src/mxe
+
+# GRASS installation path
+GRASS_WINDIR='D:\opt\grass'
+
+# Python3 path
+# https://www.python.org/ftp/python/3.8.0/python-3.8.0-amd64.exe
+PYTHON_WINDIR='C:\Python38'
 
 ################################################################################
 # For building the GRASS core

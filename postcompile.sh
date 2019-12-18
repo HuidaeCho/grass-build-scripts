@@ -1,9 +1,6 @@
 #!/bin/sh
 # This script post-processes the cross-compiled MinGW build for starting up
 # GRASS GIS from MS Windows.
-#
-# Usage:
-#	postcompile.sh c:/path/to/grass_root c:/python3/home
 
 set -e
 . ~/.grassbuildrc
@@ -19,18 +16,8 @@ if [ ! -e $DIST ]; then
 	exit 1
 fi
 
-if [ "$1" = "" ]; then
-	echo "Specify c:/path/to/grass_root"
-	exit 1
-fi
-
-if [ "$2" = "" ]; then
-	echo "Specify python3 home"
-	exit 1
-fi
-
-GISBASE=`echo $1 | sed 's#/#\\\\\\\\#g'`
-PYTHONHOME=`echo $2 | sed 's#/#\\\\\\\\#g'`
+GISBASE=`echo $GRASS_WINDIR | sed 's#/#\\\\#g; s#\\\\#\\\\\\\\#g'`
+PYTHONHOME=`echo $PYTHON_WINDIR | sed 's#/#\\\\#g; s#\\\\#\\\\\\\\#g'`
 
 for i in \
 	libblas.dll \

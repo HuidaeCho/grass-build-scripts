@@ -1,8 +1,5 @@
 #!/bin/sh
 # This script copies document files from the native build to non-native builds.
-#
-# Usage:
-#	copydocs.sh
 
 set -e
 . ~/.grassbuildrc
