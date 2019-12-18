@@ -1,8 +1,10 @@
 #!/bin/sh
-# This script generates etc/fontcap for a cross-compiled MinGW build.
+# This script generates etc/fontcap for the cross-compiled MinGW build.
 #
 # Usage:
 #	mkfontcap.sh c:/path/to/grass_root
+
+set -e
 
 ARCH=x86_64-w64-mingw32
 DIST=dist.$ARCH
@@ -18,4 +20,4 @@ if [ "$1" = "" ]; then
 fi
 
 GRASS_ROOT=`echo $1 | sed 's#/#\\\\\\\\#g'`
-sed "s/GRASS_ROOT/$GRASS_ROOT/g" ../fontcap > $DIST/etc/fontcap
+sed "s/@GRASS_ROOT@/$GRASS_ROOT/g" ../fontcap > $DIST/etc/fontcap
