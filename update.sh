@@ -2,6 +2,10 @@
 # This script builds the native and cross-compilied versions of the GRASS GIS
 # core, native GRASS addons, and gdal-grass plugins. Currently, the GRASS build
 # scripts do not cross-compile GRASS addons and gdal-grass plugins.
+#
+# Usage:
+#	update.sh	# for updating the native build only
+#	update.sh --mxe	# for updating the native and cross-compiled builds
 
 set -e
 . ~/.grassbuildrc
@@ -18,13 +22,15 @@ git merge master
 myconfigure.sh
 mymake.sh clean default
 
-if [ "$1" = "mxe" ]; then
+case "$1" in
+-m|--mxe)
 	myconfigure.sh mxe
 	mymake.sh clean default
 	copydocs.sh
 	postcompile.sh
 	switcharch.sh
-fi
+	;;
+esac
 
 cd $GDAL_GRASS_SRC
 myconfigure-gdal-grass.sh
