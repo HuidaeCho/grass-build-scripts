@@ -1,24 +1,32 @@
+# GRASS build scripts
 # https://github.com/HuidaeCho/grass-build-scripts
 GRASS_BUILD_DIR=$HOME/usr/grass
 
+# Cross-compilation environment
+# https://mxe.cc/
+MXE_SRC=$HOME/usr/local/src/mxe
+
+################################################################################
+# For building the GRASS core
 # https://github.com/OSGeo/grass
 GRASS_SRC=$HOME/usr/grass/grass
-
-# https://github.com/OSGeo/grass-addons
-GRASS_ADDONS_SRC=$GRASS_SRC-addons
-
-# https://download.osgeo.org/gdal/3.0.2/gdal-grass-3.0.2.tar.gz
-GDAL_GRASS_SRC=$HOME/usr/local/src/gdal-grass-3.0.2
-
-# $GDAL_DRIVER_PATH
-GDAL_PLUGINS_DIR=$HOME/usr/local/lib64/gdalplugins
 
 # https://www.freetype.org/
 FREETYPE_INC=/usr/include/freetype2
 
+################################################################################
+# For building the GDAL plugins for GRASS
+# https://download.osgeo.org/gdal/3.0.2/gdal-grass-3.0.2.tar.gz
+GDAL_GRASS_SRC=$HOME/usr/local/src/gdal-grass-3.0.2
+
+# $GDAL_DRIVER_PATH where these plugins will be installed
+GDAL_PLUGINS_DIR=$HOME/usr/local/lib64/gdalplugins
+
+################################################################################
+# For building GRASS addons
+# https://github.com/OSGeo/grass-addons
+GRASS_ADDONS_SRC=$GRASS_SRC-addons
+
 # https://www.gnu.org/software/libredwg/
 LIBREDWG_LIB=$HOME/usr/local/lib64
 LIBREDWG_INC=$HOME/usr/local/include
-
-# https://mxe.cc/
-MXE_SRC=$HOME/usr/local/src/mxe
