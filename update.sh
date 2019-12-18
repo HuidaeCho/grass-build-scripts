@@ -31,4 +31,4 @@ git fetch --all
 git merge upstream/master
 cd grass7
 myaddons.sh clean default
-) > ~/usr/grass/update.log 2>&1
+) > $GRASS_SRC/update.log 2>&1
