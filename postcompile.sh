@@ -1,5 +1,6 @@
 #!/bin/sh
-# This script creates batch files for starting up GRASS GIS from MS Windows.
+# This script creates etc/fontcap and batch files for starting up GRASS GIS
+# from MS Windows.
 #
 # Usage:
 #	mkbats.sh c:/path/to/grass_root c:/python3/home
@@ -29,6 +30,8 @@ rm -f $DIST/grass79.tmp
 
 GISBASE=`echo $1 | sed 's#/#\\\\\\\\#g'`
 PYTHONHOME=`echo $2 | sed 's#/#\\\\\\\\#g'`
+
+sed "s/@GISBASE@/$GISBASE/g" ../fontcap.tmpl > $DIST/etc/fontcap
 
 sed -e "s/@GISBASE@/$GISBASE/g" \
     -e "s/@PYTHONHOME@/$PYTHONHOME/g" \
