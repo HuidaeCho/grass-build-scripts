@@ -22,16 +22,6 @@ git merge master
 myconfigure.sh
 mymake.sh clean default
 
-case "$1" in
--m|--mxe)
-	myconfigure.sh mxe
-	mymake.sh clean default
-	copydocs.sh
-	postcompile.sh
-	switcharch.sh
-	;;
-esac
-
 cd $GDAL_GRASS_SRC
 myconfigure-gdal-grass.sh
 make clean install
@@ -41,4 +31,16 @@ git fetch --all
 git merge upstream/master
 cd grass7
 myaddons.sh clean default
+
+case "$1" in
+-m|--mxe)
+	cd $GRASS_SRC
+	myconfigure.sh mxe
+	mymake.sh clean default
+	copydocs.sh
+	postcompile.sh
+	switcharch.sh
+	package.sh
+	;;
+esac
 ) > $GRASS_SRC/update.log 2>&1
