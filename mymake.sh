@@ -6,6 +6,8 @@
 #	mymake.sh clean default
 
 set -e
+. ~/.grassbuildrc
+cd $GRASS_SRC
 
 MAKE=include/Make/Platform.make
 

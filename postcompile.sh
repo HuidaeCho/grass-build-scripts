@@ -6,11 +6,13 @@
 #	postcompile.sh c:/path/to/grass_root c:/python3/home
 
 set -e
+. ~/.grassbuildrc
+cd $GRASS_SRC
 
 ARCH=x86_64-w64-mingw32
 DIST=dist.$ARCH
 SHARED=$ARCH.shared
-MXE=$HOME/usr/local/src/mxe/usr/$SHARED
+MXE=$MXE_SRC/usr/$SHARED
 
 if [ ! -e $DIST ]; then
 	echo "$ARCH: Build this architecture first"
@@ -105,8 +107,8 @@ done
 cp -a bin.$ARCH/grass79.py $DIST/etc
 rm -f $DIST/grass79.tmp
 
-sed "s/@GISBASE@/$GISBASE/g" ../fontcap.tmpl > $DIST/etc/fontcap
+sed "s/@GISBASE@/$GISBASE/g" $GRASS_BUILD_DIR/fontcap.tmpl > $DIST/etc/fontcap
 
 sed -e "s/@GISBASE@/$GISBASE/g" \
     -e "s/@PYTHONHOME@/$PYTHONHOME/g" \
-    ../grass79.bat.tmpl > $DIST/grass79.bat
+    $GRASS_BUILD_DIR/grass79.bat.tmpl > $DIST/grass79.bat

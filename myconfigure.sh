@@ -8,6 +8,8 @@
 #				# binaries using MXE
 
 set -e
+. ~/.grassbuildrc
+cd $GRASS_SRC
 
 case "$1" in
 ""|native)
@@ -25,7 +27,7 @@ case "$1" in
 	--with-sqlite \
 	--with-motif \
 	--with-freetype \
-	--with-freetype-includes=/usr/include/freetype2 \
+	--with-freetype-includes=$FREETYPE_INC \
 	--with-readline \
 	--with-python \
 	--with-wxwidgets \
@@ -40,8 +42,7 @@ case "$1" in
 mxe)
 	ARCH=x86_64-w64-mingw32
 	SHARED=$ARCH.shared
-	# you can change this path to yours
-	MXE=$HOME/usr/local/src/mxe/usr/$SHARED
+	MXE=$MXE_SRC/usr/$SHARED
 
 	CC=$SHARED-gcc \
 	CXX=$SHARED-g++ \

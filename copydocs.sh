@@ -5,6 +5,8 @@
 #	copydocs.sh
 
 set -e
+. ~/.grassbuildrc
+cd $GRASS_SRC
 
 BUILD_ARCH=`sh ./config.guess`
 BUILD_DIST=dist.$BUILD_ARCH

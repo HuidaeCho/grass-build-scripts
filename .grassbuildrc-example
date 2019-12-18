@@ -1,0 +1,12 @@
+GRASS_BUILD_DIR=$HOME/usr/grass
+
+GRASS_SRC=$HOME/usr/grass/grass
+FREETYPE_INC=/usr/include/freetype2
+GDAL_GRASS_SRC=$HOME/usr/local/src/gdal-grass-3.0.2
+GDAL_PLUGINS_DIR=$HOME/usr/local/lib64/gdalplugins
+
+GRASS_ADDONS_SRC=$GRASS_SRC-addons
+LIBREDWG_LIB=$HOME/usr/local/lib64
+LIBREDWG_INC=$HOME/usr/local/include
+
+MXE_SRC=$HOME/usr/local/src/mxe

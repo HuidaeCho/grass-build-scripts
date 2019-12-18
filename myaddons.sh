@@ -5,8 +5,12 @@
 # Usage:
 #	myaddons.sh clean default
 
+set -e
+. ~/.grassbuildrc
+cd $GRASS_ADDONS_SRC/grass7
+
 make \
-MODULE_TOPDIR=$HOME/usr/grass/grass/dist.x86_64-pc-linux-gnu \
-LIBREDWGLIBPATH=-L$HOME/usr/local/lib64 \
-LIBREDWGINCPATH=-I$HOME/usr/local/include \
+MODULE_TOPDIR=$GRASS_SRC/dist.x86_64-pc-linux-gnu \
+LIBREDWGLIBPATH=-L$LIBREDWG_LIB \
+LIBREDWGINCPATH=-I$LIBREDWG_INC \
 "$@" > myaddons.log 2>&1

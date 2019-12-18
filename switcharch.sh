@@ -8,6 +8,8 @@
 #				# binaries using MXE
 
 set -e
+. ~/.grassbuildrc
+cd $GRASS_SRC
 
 backup() {
 	for i in \
