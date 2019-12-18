@@ -19,5 +19,5 @@ if [ "$1" = "" ]; then
 	exit 1
 fi
 
-GRASS_ROOT=`echo $1 | sed 's#/#\\\\\\\\#g'`
-sed "s/@GRASS_ROOT@/$GRASS_ROOT/g" ../fontcap > $DIST/etc/fontcap
+GISBASE=`echo $1 | sed 's#/#\\\\\\\\#g'`
+sed "s/@GISBASE@/$GISBASE/g" ../fontcap.tmpl > $DIST/etc/fontcap

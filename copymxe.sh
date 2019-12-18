@@ -62,11 +62,13 @@ for i in \
 	libpq.dll \
 	libproj-13.dll \
 	libquadmath-0.dll \
+	libreadline8.dll \
 	libspatialite-7.dll \
 	libsqlite3-0.dll \
 	libssh2-1.dll \
 	libssl-1_1-x64.dll \
 	libstdc++-6.dll \
+	libtermcap.dll \
 	libtiff-5.dll \
 	libunistring-2.dll \
 	libwebp-7.dll \
@@ -76,4 +78,12 @@ for i in \
 	zlib1.dll \
 ; do
 	cp -a $MXE/bin/$i $DIST/lib
+done
+
+for i in \
+	proj \
+	gdal \
+; do
+	test -e $DIST/share/$i && rm -rf $DIST/share/$i
+	cp -a $MXE/share/$i $DIST/share
 done
