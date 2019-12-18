@@ -21,9 +21,7 @@ fi
 
 cd ~/usr/local/src/gdal-grass-3.0.2
 ../myconfigure-gdal-grass.sh
-make clean
-make
-make install
+make clean install
 
 cd ~/usr/grass/grass-addons
 git fetch --all
