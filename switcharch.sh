@@ -50,6 +50,7 @@ mxe)
 	shift
 	;;
 esac
+
 ARCH_MAKE=include/Make/Platform.make.$ARCH
 MAKE=include/Make/Platform.make
 

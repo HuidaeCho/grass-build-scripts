@@ -8,6 +8,7 @@ set -e
 
 BUILD_ARCH=`sh ./config.guess`
 BUILD_DIST=dist.$BUILD_ARCH
+
 if [ ! -e $BUILD_DIST ]; then
 	echo "$BUILD_ARCH: Build the native architecture first"
 	exit 1
