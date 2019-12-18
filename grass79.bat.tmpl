@@ -1,6 +1,14 @@
 @echo off
 
-set GISBASE=@GISBASE@
+set GISBASE=%~dp0
+
+if not exist %GISBASE%\etc\fontcap (
+	pushd .
+	set GISRC=dummy
+	cd %GISBASE%\lib
+	%GISBASE%\bin\g.mkfontcap.exe
+	popd
+)
 
 rem set PYTHONHOME=@PYTHONHOME@
 rem set GRASS_PYTHON=%PYTHONHOME%\python.exe
