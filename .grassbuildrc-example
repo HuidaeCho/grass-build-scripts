@@ -2,6 +2,9 @@
 # https://github.com/HuidaeCho/grass-build-scripts
 GRASS_BUILD_DIR=$HOME/usr/grass
 
+# For packaging
+GRASS_ZIP_DIR=$GRASS_BUILD_DIR
+
 ################################################################################
 # Cross-compilation environment
 # https://mxe.cc/
