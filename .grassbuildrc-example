@@ -23,7 +23,7 @@ GRASS_SRC=$HOME/usr/grass/grass
 FREETYPE_INC=/usr/include/freetype2
 
 ################################################################################
-# For building the GDAL plugins for GRASS
+# For building gdal-grass plugins
 # https://download.osgeo.org/gdal/3.0.2/gdal-grass-3.0.2.tar.gz
 GDAL_GRASS_SRC=$HOME/usr/local/src/gdal-grass-3.0.2
 

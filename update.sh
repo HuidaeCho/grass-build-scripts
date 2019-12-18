@@ -1,7 +1,7 @@
 #!/bin/sh
 # This script builds the native and cross-compilied versions of the GRASS GIS
-# core, native GRASS addons, and GDAL plugins. Currently, the GRASS build
-# scripts do not cross-compile GRASS addons and GDAL plugins.
+# core, native GRASS addons, and gdal-grass plugins. Currently, the GRASS build
+# scripts do not cross-compile GRASS addons and gdal-grass plugins.
 
 set -e
 . ~/.grassbuildrc
