@@ -10,11 +10,14 @@ git checkout hcho
 git merge master
 ../myconfigure.sh
 ../mymake.sh clean default
-../myconfigure.sh mxe
-../mymake.sh clean default
-../copydocs.sh
-../mkfontcap.sh G:/grass
-../switcharch.sh
+
+if [ "$1" = "mxe" ]; then
+	../myconfigure.sh mxe
+	../mymake.sh clean default
+	../copydocs.sh
+	../mkfontcap.sh G:/grass
+	../switcharch.sh
+fi
 
 cd ~/usr/local/src/gdal-grass-3.0.2
 ../myconfigure-gdal-grass.sh
