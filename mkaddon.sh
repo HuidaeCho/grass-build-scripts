@@ -1,6 +1,6 @@
 #!/bin/sh
-# This script builds a GRASS GIS addon for an architecture selected by switcharch.sh.
-# It should be run from the root of the GRASS addon asource code.
+# This script builds a GRASS GIS addon for the current architecture. It should
+# be run from the source directory of a GRASS addon.
 
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
