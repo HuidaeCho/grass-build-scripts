@@ -30,7 +30,7 @@ cd $GRASS_ADDONS_SRC
 git fetch --all
 git merge upstream/master
 cd grass7
-myaddons.sh clean default
+mkaddons.sh clean default
 
 case "$1" in
 -m|--mxe)

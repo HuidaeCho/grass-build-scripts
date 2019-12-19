@@ -54,7 +54,7 @@ case "$1" in
 		echo "Current architecture undefined"
 		exit 1
 	fi
-	echo "$CUR_ARCH: Current architecture"
+	echo $CUR_ARCH
 	exit
 	;;
 ""|-n|--native)

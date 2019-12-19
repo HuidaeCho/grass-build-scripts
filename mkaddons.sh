@@ -6,8 +6,10 @@ set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_ADDONS_SRC/grass7
 
+ARCH=`$GRASS_BUILD_DIR/switcharch.sh --query`
+
 make \
-MODULE_TOPDIR=$GRASS_SRC/dist.x86_64-pc-linux-gnu \
+MODULE_TOPDIR=$GRASS_SRC/dist.$ARCH \
 LIBREDWGLIBPATH=-L$LIBREDWG_LIB \
 LIBREDWGINCPATH=-I$LIBREDWG_INC \
-"$@" > myaddons.log 2>&1
+"$@" > mkaddons.log 2>&1
