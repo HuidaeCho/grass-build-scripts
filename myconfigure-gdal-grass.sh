@@ -2,7 +2,7 @@
 # This script configures gdal-grass plugins.
 
 set -e
-. ~/.grassbuildrc
+. ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GDAL_GRASS_SRC
 
 CXX="g++ -std=c++11" \

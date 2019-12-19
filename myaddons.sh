@@ -3,7 +3,7 @@
 # It should be run from the root of the GRASS addon asource code.
 
 set -e
-. ~/.grassbuildrc
+. ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_ADDONS_SRC/grass7
 
 make \

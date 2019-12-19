@@ -9,7 +9,7 @@
 #	switcharch.sh --query	# query the current architecture
 
 set -e
-. ~/.grassbuildrc
+. ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_SRC
 
 backup() {

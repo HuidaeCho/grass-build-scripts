@@ -3,7 +3,7 @@
 # distribution.
 
 set -e
-. ~/.grassbuildrc
+. ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_SRC
 
 ARCH=x86_64-w64-mingw32

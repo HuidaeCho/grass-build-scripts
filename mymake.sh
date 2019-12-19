@@ -3,7 +3,7 @@
 # It should be run from the root of the GRASS source code.
 
 set -e
-. ~/.grassbuildrc
+. ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_SRC
 
 MAKE=include/Make/Platform.make

@@ -8,7 +8,7 @@
 #				# binaries using MXE
 
 set -e
-. ~/.grassbuildrc
+. ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_SRC
 
 case "$1" in

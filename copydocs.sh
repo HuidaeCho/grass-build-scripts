@@ -2,7 +2,7 @@
 # This script copies document files from the native build to non-native builds.
 
 set -e
-. ~/.grassbuildrc
+. ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_SRC
 
 BUILD_ARCH=`sh ./config.guess`

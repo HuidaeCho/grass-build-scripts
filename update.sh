@@ -8,7 +8,7 @@
 #	update.sh --mxe	# for updating the native and cross-compiled builds
 
 set -e
-. ~/.grassbuildrc
+. ${GRASSBUILDRC-~/.grassbuildrc}
 
 PATH="$GRASS_BUILD_DIR:$PATH"
 
