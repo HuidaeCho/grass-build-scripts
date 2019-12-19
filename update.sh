@@ -35,7 +35,7 @@ mkaddons.sh clean default
 case "$1" in
 -m|--mxe)
 	cd $GRASS_SRC
-	myconfigure.sh mxe
+	myconfigure.sh --mxe
 	mymake.sh clean default
 	copydocs.sh
 	postcompile.sh
