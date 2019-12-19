@@ -12,3 +12,10 @@ MODULE_TOPDIR=$GRASS_SRC/dist.$ARCH \
 LIBREDWGLIBPATH=-L$LIBREDWG_LIB \
 LIBREDWGINCPATH=-I$LIBREDWG_INC \
 "$@" > mkaddons.log 2>&1
+
+for i in \
+	mkaddons.log \
+	$GRASS_SRC/error.log \
+; do
+	cp -a $i $i.$ARCH
+done
