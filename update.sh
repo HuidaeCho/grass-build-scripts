@@ -39,8 +39,8 @@ case "$1" in
 	mymake.sh clean default
 	copydocs.sh
 	postcompile.sh
-	switcharch.sh
 	package.sh
+	switcharch.sh
 	;;
 esac
 ) > $GRASS_SRC/update.log 2>&1
