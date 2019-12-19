@@ -14,10 +14,11 @@ if [ ! -e $DIST ]; then
 	exit 1
 fi
 
+VERSION=`sed -n '/^INST_DIR/{s/^INST_DIR.*grass//; p}' include/Make/Platform.make`
 DATE=`date +%Y%m%d`
 
 rm -f grass
 ln -s $DIST grass
-rm -f $GRASS_ZIP_DIR/grass-$ARCH-*.zip
-zip -r $GRASS_ZIP_DIR/grass-$ARCH-$DATE.zip grass
+rm -f $GRASS_ZIP_DIR/grass*-$ARCH-*.zip
+zip -r $GRASS_ZIP_DIR/grass$VERSION-$ARCH-$DATE.zip grass
 rm -f grass
