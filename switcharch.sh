@@ -50,7 +50,7 @@ fi
 
 case "$1" in
 -q|--query)
-	if [ -z $CUR_ARCH ]; then
+	if [ -z "$CUR_ARCH" ]; then
 		echo "Current architecture undefined"
 		exit 1
 	fi
