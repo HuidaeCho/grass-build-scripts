@@ -1,6 +1,6 @@
 # GRASS build scripts
 # https://github.com/HuidaeCho/grass-build-scripts
-GRASS_BUILD_DIR=$HOME/usr/grass
+GRASS_BUILD_DIR=$HOME/usr/local/src/grass-build-scripts
 
 # For packaging
 GRASS_ZIP_DIR=$GRASS_BUILD_DIR
@@ -17,7 +17,7 @@ PYTHON_WINDIR='C:\Python38'
 ################################################################################
 # For building the GRASS core
 # https://github.com/OSGeo/grass
-GRASS_SRC=$HOME/usr/grass/grass
+GRASS_SRC=$HOME/usr/local/src/grass
 
 # https://www.freetype.org/
 FREETYPE_INC=/usr/include/freetype2
