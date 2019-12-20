@@ -14,11 +14,27 @@ PATH="$GRASS_BUILD_DIR:$PATH"
 
 (
 cd $GRASS_SRC
-git checkout master
+branches=`git branch -a --format='%(refname:short)'`
+
 git fetch --all
-git merge upstream/master
-git checkout hcho
-git merge master
+git checkout master
+# if upstream/master exists, assume it's https://github.com/OSGeo/grass.git's master branch
+if echo "$branches" | grep -q '^upstream/master$'; then
+	# merge OSGeo's master
+	git merge upstream/master
+else
+	# merge origin/master (either OSGeo's or HuidaeCho's master)
+	git merge origin/master
+fi
+# if origin/hcho exists, assume it's https://github.com/HuidaeCho/grass.git's hcho branch
+if echo "$branches" | grep -q '^origin/hcho$'; then
+	# use hcho because he's cool ;-)
+	git checkout hcho
+	# merge origin/hcho
+	git merge origin/hcho
+	# merge master already merged with upstream/master or origin/master
+	git merge master
+fi
 myconfigure.sh
 mymake.sh clean default
 
@@ -27,8 +43,18 @@ myconfigure-gdal-grass.sh
 make clean install
 
 cd $GRASS_ADDONS_SRC
+branches=`git branch -a --format='%(refname:short)'`
+
 git fetch --all
-git merge upstream/master
+git checkout master
+# if upstream/master exists, assume it's https://github.com/OSGeo/grass-addons.git's master branch
+if echo "$branches" | grep -q '^upstream/master$'; then
+	# merge OSGeo's master
+	git merge upstream/master
+else
+	# merge origin/master (either OSGeo's or HuidaeCho's master)
+	git merge origin/master
+fi
 cd grass7
 mkaddons.sh clean default
 
