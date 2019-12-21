@@ -16,8 +16,6 @@ if [ ! -e $DIST ]; then
 	exit 1
 fi
 
-PYTHONHOME=`echo $PYTHON_WINDIR | sed 's#/#\\\\#g; s#\\\\#\\\\\\\\#g'`
-
 for i in \
 	libblas.dll \
 	libbz2.dll \
@@ -90,7 +88,6 @@ for i in \
 	cp -a $MXE/share/$i $DIST/share
 done
 
-cp -a bin.$ARCH/grass79.py $DIST/etc
 rm -f $DIST/grass79.tmp
-
-sed "s/@PYTHONHOME@/$PYTHONHOME/g" $GRASS_BUILD_DIR/grass79.bat.tmpl > $DIST/grass79.bat
+cp -a bin.$ARCH/grass79.py $DIST/etc
+cp -a $GRASS_BUILD_DIR/grass79.bat $DIST

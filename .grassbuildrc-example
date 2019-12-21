@@ -10,10 +10,6 @@ GRASS_ZIP_DIR=$GRASS_BUILD_DIR
 # https://mxe.cc/
 MXE_SRC=$HOME/usr/local/src/mxe
 
-# Python3 path
-# https://www.python.org/ftp/python/3.8.0/python-3.8.0-amd64.exe
-PYTHON_WINDIR='C:\Python38'
-
 ################################################################################
 # For building the GRASS core
 # https://github.com/OSGeo/grass
