@@ -113,7 +113,7 @@ for i in \
 	include/Make/Doxyfile_arch_latex \
 	error.log \
 ; do
-	test -e $i && cp -a $i $i.$BUILD_ARCH
+	cp -a $i $i.$BUILD_ARCH
 done
 
 ################################################################################
@@ -165,7 +165,7 @@ for i in \
 	include/Make/Doxyfile_arch_latex \
 	error.log \
 ; do
-	test -e $i && cp -a $i $i.$BUILD_ARCH
+	cp -a $i $i.$BUILD_ARCH
 done
 
 ################################################################################
@@ -178,7 +178,6 @@ for i in \
 	docs \
 	gui/wxpython/xml \
 ; do
-	test -e $BUILD_DIST/$i || continue
 	rm -rf $DIST/$i
 	cp -a $BUILD_DIST/$i $DIST/$i
 done
@@ -254,8 +253,8 @@ for i in \
 	proj \
 	gdal \
 ; do
-	test -e $DIST/share/$i && rm -rf $DIST/share/$i
-	cp -a $MXE_SHARED/share/$i $DIST/share
+	rm -rf $DIST/share/$i
+	cp -a $MXE_SHARED/share/$i $DIST/share/$i
 done
 
 ################################################################################

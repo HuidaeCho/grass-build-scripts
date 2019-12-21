@@ -84,8 +84,8 @@ for i in \
 	proj \
 	gdal \
 ; do
-	test -e $DIST/share/$i && rm -rf $DIST/share/$i
-	cp -a $MXE_SHARED/share/$i $DIST/share
+	rm -rf $DIST/share/$i
+	cp -a $MXE_SHARED/share/$i $DIST/share/$i
 done
 
 VERSION=`sed -n '/^INST_DIR/{s/^INST_DIR.*grass//; p}' include/Make/Platform.make`
