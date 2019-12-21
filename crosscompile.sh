@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # Purpose: Script for building a cross-compiled portable package of GRASS GIS
-#          based on https://github.com/HuidaeCho/grass-build-scripts
 #
 # Author:  Huidae Cho
 #
@@ -10,7 +9,7 @@
 # Tested on Slackware 14.2 x86_64 with up-to-date packages from slackpkg and
 # sbopkg
 #
-# Basic Steps:
+# Basic steps:
 #
 # mkdir -p ~/usr/src
 # cd ~/usr/src
