@@ -1,8 +1,8 @@
 #!/bin/sh
 #
-# Purpose: Script for building a cross-compiled portable package of GRASS GIS
+# Script for building a cross-compiled portable package of GRASS GIS
 #
-# Author:  Huidae Cho
+# Written by Huidae Cho
 #
 # Requires MXE <https://mxe.cc/> for cross-compilation
 #
