@@ -3,6 +3,9 @@
 rem Change this variable to override auto-detection of python.exe in PATH
 set GRASS_PYTHON=C:\Python38\python.exe
 
+rem For portable installation, use %~d0 for the changing drive letter
+rem set GRASS_PYTHON=%~d0\Python38\python.exe
+
 set GISBASE=%~dp0
 set GRASS_PROJSHARE=%GISBASE%\share\proj
 
