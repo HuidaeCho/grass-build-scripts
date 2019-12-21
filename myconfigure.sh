@@ -42,16 +42,17 @@ case "$1" in
 -m|--mxe)
 	ARCH=x86_64-w64-mingw32
 	SHARED=$ARCH.shared
-	MXE=$MXE_SRC/usr/$SHARED
+	MXE_BIN=$MXE_SRC/usr/bin/$SHARED
+	MXE_SHARED=$MXE_SRC/usr/$SHARED
 
-	CC=$SHARED-gcc \
-	CXX=$SHARED-g++ \
+	CC=$MXE_BIN-gcc \
+	CXX=$MXE_BIN-g++ \
 	CFLAGS="-g -O2 -Wall" \
 	CXXFLAGS="-g -O2 -Wall" \
-	AR=$SHARED-ar \
-	RANLIB=$SHARED-ranlib \
-	WINDRES=$SHARED-windres \
-	PKG_CONFIG=$SHARED-pkg-config \
+	AR=$MXE_BIN-ar \
+	RANLIB=$MXE_BIN-ranlib \
+	WINDRES=$MXE_BIN-windres \
+	PKG_CONFIG=$MXE_BIN-pkg-config \
 	./configure \
 	--host=$ARCH \
 	--with-nls \
@@ -61,17 +62,17 @@ case "$1" in
 	--with-openmp \
 	--with-postgres \
 	--with-sqlite \
-	--with-cairo-includes=$MXE/include/cairo \
+	--with-cairo-includes=$MXE_SHARED/include/cairo \
 	--with-freetype \
-	--with-freetype-includes=$MXE/include/freetype2 \
+	--with-freetype-includes=$MXE_SHARED/include/freetype2 \
 	--with-readline \
 	--with-python \
 	--with-wxwidgets \
-	--with-geos=$MXE/bin/geos-config \
-	--with-netcdf=$MXE/bin/nc-config \
+	--with-geos=$MXE_SHARED/bin/geos-config \
+	--with-netcdf=$MXE_SHARED/bin/nc-config \
 	--with-zstd \
 	--with-bzlib \
-	--with-gdal=$MXE/bin/gdal-config \
+	--with-gdal=$MXE_SHARED/bin/gdal-config \
 	--with-opengl=windows \
 	> myconfigure.log 2>&1
 	;;

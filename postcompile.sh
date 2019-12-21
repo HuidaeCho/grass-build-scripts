@@ -9,7 +9,7 @@ cd $GRASS_SRC
 ARCH=x86_64-w64-mingw32
 DIST=dist.$ARCH
 SHARED=$ARCH.shared
-MXE=$MXE_SRC/usr/$SHARED
+MXE_SHARED=$MXE_SRC/usr/$SHARED
 
 if [ ! -e $DIST ]; then
 	echo "$ARCH: Build this architecture first"
@@ -77,7 +77,7 @@ for i in \
 	libzstd.dll \
 	zlib1.dll \
 ; do
-	cp -a $MXE/bin/$i $DIST/lib
+	cp -a $MXE_SHARED/bin/$i $DIST/lib
 done
 
 for i in \
@@ -85,7 +85,7 @@ for i in \
 	gdal \
 ; do
 	test -e $DIST/share/$i && rm -rf $DIST/share/$i
-	cp -a $MXE/share/$i $DIST/share
+	cp -a $MXE_SHARED/share/$i $DIST/share
 done
 
 rm -f $DIST/grass79.tmp
