@@ -43,7 +43,7 @@ restore() {
 MAKE=include/Make/Platform.make
 
 if [ -f $MAKE ]; then
-	CUR_ARCH=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \]*//; p}' $MAKE`
+	CUR_ARCH=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \t]*//; p}' $MAKE`
 else
 	CUR_ARCH=
 fi

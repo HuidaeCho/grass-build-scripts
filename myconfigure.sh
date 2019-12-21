@@ -82,7 +82,7 @@ case "$1" in
 	;;
 esac
 
-ARCH=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \]*//; p}' include/Make/Platform.make`
+ARCH=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \t]*//; p}' include/Make/Platform.make`
 for i in \
 	myconfigure.log \
 	config.log \

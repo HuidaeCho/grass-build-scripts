@@ -88,7 +88,7 @@ for i in \
 	cp -a $MXE_SHARED/share/$i $DIST/share/$i
 done
 
-VERSION=`sed -n '/^INST_DIR/{s/^INST_DIR.*grass//; p}' include/Make/Platform.make`
+VERSION=`sed -n '/^INST_DIR[ \t]*=/{s/^INST_DIR.*grass//; p}' include/Make/Platform.make`
 
 rm -f $DIST/grass$VERSION.tmp
 cp -a bin.$ARCH/grass$VERSION.py $DIST/etc

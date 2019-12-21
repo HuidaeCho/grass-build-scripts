@@ -14,7 +14,7 @@ if [ ! -e $DIST ]; then
 	exit 1
 fi
 
-VERSION=`sed -n '/^INST_DIR/{s/^INST_DIR.*grass//; p}' include/Make/Platform.make`
+VERSION=`sed -n '/^INST_DIR[ \t]*=/{s/^INST_DIR.*grass//; p}' include/Make/Platform.make`
 DATE=`date +%Y%m%d`
 
 rm -f grass
