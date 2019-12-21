@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Script for building a cross-compiled portable package of GRASS GIS
+# Standalone script for building a cross-compiled portable package of GRASS GIS
 #
 # Written by Huidae Cho
 #
