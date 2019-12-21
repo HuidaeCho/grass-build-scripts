@@ -5,7 +5,7 @@
 #
 # Author:  Huidae Cho
 #
-# Usage:   cross_compile.sh [--pull]
+# Usage:   crosscompile.sh [--pull]
 #
 #          --pull flag updates local branch
 #
@@ -27,7 +27,7 @@
 # cd ~/usr/src
 # git clone https://github.com/OSGeo/grass.git
 # cd grass
-# MXE_SRC=$HOME/usr/src/mxe cross_compile.sh --pull > cross_compile.log 2>&1
+# MXE_SRC=$HOME/usr/src/mxe crosscompile.sh --pull > crosscompile.log 2>&1
 #
 
 ################################################################################
@@ -62,7 +62,7 @@ fi
 if [ -n "$CMD" ]; then
 	echo
 	echo "Please override$VARS; for example,"
-	echo $CMD cross_compile.sh
+	echo $CMD crosscompile.sh
 	exit 1
 fi
 
