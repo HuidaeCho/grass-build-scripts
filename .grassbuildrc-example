@@ -8,7 +8,7 @@ GRASS_ZIP_DIR=$GRASS_BUILD_DIR
 ################################################################################
 # Cross-compilation environment
 # https://mxe.cc/
-MXE_SRC=$HOME/usr/local/src/mxe
+MXE=$HOME/usr/local/src/mxe
 
 ################################################################################
 # For building the GRASS core

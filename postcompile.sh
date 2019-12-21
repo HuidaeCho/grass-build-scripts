@@ -9,7 +9,7 @@ cd $GRASS_SRC
 ARCH=x86_64-w64-mingw32
 DIST=dist.$ARCH
 SHARED=$ARCH.shared
-MXE_SHARED=$MXE_SRC/usr/$SHARED
+MXE_SHARED=$MXE/usr/$SHARED
 
 if [ ! -e $DIST ]; then
 	echo "$ARCH: Build this architecture first"

@@ -5,10 +5,6 @@
 #
 # Author:  Huidae Cho
 #
-# Usage:   crosscompile.sh [--pull]
-#
-#          --pull flag updates local branch
-#
 # Requires MXE <https://mxe.cc/> for cross-compilation
 #
 # Tested on Slackware 14.2 x86_64 with up-to-date packages from slackpkg and
@@ -27,48 +23,77 @@
 # cd ~/usr/src
 # git clone https://github.com/OSGeo/grass.git
 # cd grass
-# MXE_SRC=$HOME/usr/src/mxe crosscompile.sh --pull > crosscompile.log 2>&1
+# crosscompile.sh --pull --package > crosscompile.log 2>&1
 #
 
-################################################################################
-# Initialization
-
-# Stop on errors
+# stop on errors
 set -e
 
-# Default paths, but can be overriden from the command line
-MXE_SRC=${MXE_SRC-$HOME/usr/local/src/mxe}
+# default paths, but can be overriden from the command line
+MXE=${MXE-$HOME/usr/local/src/mxe}
 FREETYPE_INC=${FREETYPE_INC-/usr/include/freetype2}
 
-# See if we're inside the root of the GRASS source code
+# process options
+pull=0
+package=0
+for opt; do
+	case $opt in
+	-h|--help)
+		cat<<'EOT'
+Usage: crosscompile.sh [OPTIONS]
+
+-h, --help               display this help message
+    --mxe=PATH           MXE path (default: $HOME/usr/local/src/mxe)
+    --freetype-inc=PATH  FreeType include path (default: /usr/include/freetype2)
+    --pull               update the current branch
+    --package            package the cross-compiled build as
+                         grass79-x86_64-w64-mingw32-YYYYMMDD.zip
+EOT
+		exit
+		;;
+	--pull)
+		pull=1
+		;;
+	--package)
+		package=1
+		;;
+	--mxe=*)
+		MXE=`echo $opt | sed 's/^--mxe=//'`
+		;;
+	--freetype-inc=*)
+		FREETYPE_INC=`echo $opt | sed 's/^--freetype-inc=//'`
+		;;
+	*)
+		echo "$opt: unknown option"
+		exit 1
+		;;
+	esac
+done
+
+# see if we're inside the root of the GRASS source code
 if [ ! -e grass.pc.in ]; then
 	echo "Please run this script from the root of the GRASS source code"
 	exit 1
 fi
 
-# Check paths
-CMD=
-VARS=
-if [ ! -e $MXE_SRC ]; then
-	echo "$MXE_SRC: not found"
-	CMD="$CMD MXE_SRC=/opt/mxe"
-	VARS="$VARS \$MXE_SRC"
+# check paths
+errors=0
+if [ ! -e $MXE ]; then
+	echo "$MXE: not found"
+	errors=1
 fi
 if [ ! -e $FREETYPE_INC ]; then
 	echo "$FREETYPE_INC: not found"
-	CMD="$CMD FREETYPE_INC=/usr/local/include/freetype2"
-	VARS="$VARS \$FREETYPE_INC"
+	errors=1
 fi
-if [ -n "$CMD" ]; then
-	echo
-	echo "Please override$VARS; for example,"
-	echo $CMD crosscompile.sh
+if [ $errors -eq 1 ]; then
 	exit 1
 fi
 
-if [ "$1" == "--pull" ]; then
+# update the current branch if requested
+if [ $pull -eq 1 ]; then
 	if [ ! -e .git ]; then
-		echo "Not a git repository"
+		echo "not a git repository"
 		exit 1
 	fi
 	git pull
@@ -121,8 +146,8 @@ done
 
 ARCH=x86_64-w64-mingw32
 SHARED=$ARCH.shared
-MXE_BIN=$MXE_SRC/usr/bin/$SHARED
-MXE_SHARED=$MXE_SRC/usr/$SHARED
+MXE_BIN=$MXE/usr/bin/$SHARED
+MXE_SHARED=$MXE/usr/$SHARED
 
 CC=$MXE_BIN-gcc \
 CXX=$MXE_BIN-g++ \
@@ -258,7 +283,7 @@ for i in \
 done
 
 ################################################################################
-# Prepare portable start-up
+# Post-compile process
 
 VERSION=`sed -n '/^INST_DIR/{s/^INST_DIR.*grass//; p}' include/Make/Platform.make`
 
@@ -312,13 +337,12 @@ if %ERRORLEVEL% geq 1 pause
 EOT
 unix2dos $DIST/grass$VERSION.bat
 
-################################################################################
-# Package
-
-DATE=`date +%Y%m%d`
-
-rm -f grass
-ln -s $DIST grass
-rm -f grass*-$ARCH-*.zip
-zip -r grass$VERSION-$ARCH-$DATE.zip grass
-rm -f grass
+# package if requested
+if [ $package -eq 1 ]; then
+	DATE=`date +%Y%m%d`
+	rm -f grass
+	ln -s $DIST grass
+	rm -f grass*-$ARCH-*.zip
+	zip -r grass$VERSION-$ARCH-$DATE.zip grass
+	rm -f grass
+fi

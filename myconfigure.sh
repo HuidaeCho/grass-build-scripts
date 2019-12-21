@@ -42,8 +42,8 @@ case "$1" in
 -m|--mxe)
 	ARCH=x86_64-w64-mingw32
 	SHARED=$ARCH.shared
-	MXE_BIN=$MXE_SRC/usr/bin/$SHARED
-	MXE_SHARED=$MXE_SRC/usr/$SHARED
+	MXE_BIN=$MXE/usr/bin/$SHARED
+	MXE_SHARED=$MXE/usr/$SHARED
 
 	CC=$MXE_BIN-gcc \
 	CXX=$MXE_BIN-g++ \
