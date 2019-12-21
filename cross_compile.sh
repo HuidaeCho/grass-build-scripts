@@ -5,6 +5,10 @@
 #
 # Author:  Huidae Cho
 #
+# Usage:   cross_compile.sh [--pull]
+#
+#          --pull flag updates local branch
+#
 # Requires MXE <https://mxe.cc/> for cross-compilation
 #
 # Tested on Slackware 14.2 x86_64 with up-to-date packages from slackpkg and
@@ -23,7 +27,7 @@
 # cd ~/usr/src
 # git clone https://github.com/OSGeo/grass.git
 # cd grass
-# MXE_SRC=$HOME/usr/src/mxe cross_compile.sh > cross_compile.log 2>&1
+# MXE_SRC=$HOME/usr/src/mxe cross_compile.sh --pull > cross_compile.log 2>&1
 #
 
 ################################################################################
@@ -60,6 +64,14 @@ if [ -n "$CMD" ]; then
 	echo "Please override$VARS; for example,"
 	echo $CMD cross_compile.sh
 	exit 1
+fi
+
+if [ "$1" == "--pull" ]; then
+	if [ ! -e .git ]; then
+		echo "Not a git repository"
+		exit 1
+	fi
+	git pull
 fi
 
 ################################################################################
