@@ -3,9 +3,8 @@
 # be run from the root of the GRASS source code.
 #
 # Usage:
-#	switcharch.sh		# for compiling native binaries
-#	switcharch.sh --mxe	# for cross-compiling x86_64-w64-mingw32
-#				# binaries using MXE
+#	switcharch.sh		# switch the current architecture to native
+#	switcharch.sh --mxe	# switch the current architecture to x86_64-w64-mingw32
 #	switcharch.sh --query	# query the current architecture
 
 set -e

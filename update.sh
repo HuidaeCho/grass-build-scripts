@@ -4,8 +4,8 @@
 # scripts do not cross-compile GRASS addons and gdal-grass plugins.
 #
 # Usage:
-#	update.sh	# for updating the native build only
-#	update.sh --mxe	# for updating the native and cross-compiled builds
+#	update.sh	# update the native build only
+#	update.sh --mxe	# update the native and cross-compiled builds
 
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}

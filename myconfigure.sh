@@ -3,9 +3,9 @@
 # building GRASS GIS. It should be run from the root of the GRASS source code.
 #
 # Usage:
-#	myconfigure.sh		# for compiling native binaries
-#	myconfigure.sh --mxe	# for cross-compiling x86_64-w64-mingw32
-#				# binaries using MXE
+#	myconfigure.sh		# configure for native binaries
+#	myconfigure.sh --mxe	# configure for x86_64-w64-mingw32 binaries
+#				# using MXE
 
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
