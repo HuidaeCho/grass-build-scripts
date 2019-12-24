@@ -22,16 +22,17 @@
 # cd ~/usr/src
 # git clone https://github.com/OSGeo/grass.git
 # cd grass
-# crosscompile.sh --mxe=$HOME/usr/src/mxe --pull --package \
-#      > crosscompile.log 2>&1
+# crosscompile.sh --grass-source=/usr/local/src/grass --mxe=$HOME/usr/src/mxe \
+#	--pull --package > crosscompile.log 2>&1
 #
 
 # stop on errors
 set -e
 
 # default paths, but can be overriden from the command line
+GRASS_SRC=${GRASS_SOURCE-`pwd`}
 MXE=${MXE-$HOME/usr/local/src/mxe}
-FREETYPE_INCLUDE=${FREETYPE_INCLUDE-/usr/include/freetype2}
+FREETYPE_INC=${FREETYPE_INCLUDE-/usr/include/freetype2}
 
 # process options
 PULL=0
@@ -43,6 +44,7 @@ for opt; do
 Usage: crosscompile.sh [OPTIONS]
 
 -h, --help                   display this help message
+    --grass-source=PATH      GRASS source path (default: current directory)
     --mxe=PATH               MXE path (default: $HOME/usr/local/src/mxe)
     --freetype-include=PATH  FreeType include path
                              (default: /usr/include/freetype2)
@@ -52,17 +54,20 @@ Usage: crosscompile.sh [OPTIONS]
 EOT
 		exit
 		;;
-	--pull)
-		PULL=1
-		;;
-	--package)
-		PACKAGE=1
+	--grass-source=*)
+		GRASS_SRC=`echo $opt | sed 's/^[^=]*=//'`
 		;;
 	--mxe=*)
 		MXE=`echo $opt | sed 's/^[^=]*=//'`
 		;;
 	--freetype-include=*)
-		FREETYPE_INCLUDE=`echo $opt | sed 's/^[^=]*=//'`
+		FREETYPE_INC=`echo $opt | sed 's/^[^=]*=//'`
+		;;
+	--pull)
+		PULL=1
+		;;
+	--package)
+		PACKAGE=1
 		;;
 	*)
 		echo "$opt: unknown option"
@@ -70,6 +75,8 @@ EOT
 		;;
 	esac
 done
+
+cd $GRASS_SRC
 
 # see if we're inside the root of the GRASS source code
 if [ ! -e grass.pc.in ]; then
@@ -83,8 +90,8 @@ if [ ! -e $MXE ]; then
 	echo "$MXE: not found"
 	errors=1
 fi
-if [ ! -e $FREETYPE_INCLUDE ]; then
-	echo "$FREETYPE_INCLUDE: not found"
+if [ ! -e $FREETYPE_INC ]; then
+	echo "$FREETYPE_INC: not found"
 	errors=1
 fi
 if [ $errors -eq 1 ]; then
@@ -117,7 +124,7 @@ LDFLAGS="-lcurses" \
 --with-sqlite \
 --with-motif \
 --with-freetype \
---with-freetype-includes=$FREETYPE_INCLUDE \
+--with-freetype-includes=$FREETYPE_INC \
 --with-readline \
 --with-python \
 --with-wxwidgets \
