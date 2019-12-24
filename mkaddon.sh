@@ -5,7 +5,8 @@
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 
-ARCH=`$GRASS_BUILD_DIR/switcharch.sh --query`
+tmp=`dirname $0`; GRASS_BUILD_SCRIPTS=`realpath $tmp`
+ARCH=`$GRASS_BUILD_SCRIPTS/switcharch.sh --query`
 
 make \
 MODULE_TOPDIR=$GRASS_SRC/dist.$ARCH \

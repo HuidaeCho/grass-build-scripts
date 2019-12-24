@@ -19,6 +19,6 @@ DATE=`date +%Y%m%d`
 
 rm -f grass
 ln -s $DIST grass
-rm -f $GRASS_ZIP_DIR/grass*-$ARCH-*.zip
-zip -r $GRASS_ZIP_DIR/grass$VERSION-$ARCH-$DATE.zip grass
+rm -f grass*-$ARCH-*.zip
+zip -r grass$VERSION-$ARCH-$DATE.zip grass
 rm -f grass

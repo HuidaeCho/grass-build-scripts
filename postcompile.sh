@@ -88,8 +88,9 @@ for i in \
 	cp -a $MXE_SHARED/share/$i $DIST/share/$i
 done
 
+tmp=`dirname $0`; GRASS_BUILD_SCRIPTS=`realpath $tmp`
 VERSION=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make`
 
 rm -f $DIST/grass$VERSION.tmp
 cp -a bin.$ARCH/grass$VERSION.py $DIST/etc
-unix2dos -n $GRASS_BUILD_DIR/grass$VERSION.bat $DIST/grass$VERSION.bat
+unix2dos -n $GRASS_BUILD_SCRIPTS/grass$VERSION.bat $DIST/grass$VERSION.bat
