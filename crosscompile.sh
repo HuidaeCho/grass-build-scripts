@@ -103,6 +103,9 @@ fi
 ################################################################################
 # Compile the native architecture for generating document files
 
+echo "Started cross-compilation: `date`"
+echo
+
 CFLAGS="-g -O2 -Wall" \
 CXXFLAGS="-g -O2 -Wall" \
 LDFLAGS="-lcurses" \
@@ -347,3 +350,6 @@ if [ $PACKAGE -eq 1 ]; then
 	zip -r grass$VERSION-$ARCH-$DATE.zip grass
 	rm -f grass
 fi
+
+echo
+echo "Completed cross-compilation: `date`"
