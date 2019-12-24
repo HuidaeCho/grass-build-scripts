@@ -37,7 +37,7 @@ FREETYPE_INCLUDE=${FREETYPE_INCLUDE-/usr/include/freetype2}
 PULL=0
 PACKAGE=0
 for opt; do
-	case $opt in
+	case "$opt" in
 	-h|--help)
 		cat<<'EOT'
 Usage: crosscompile.sh [OPTIONS]
