@@ -8,7 +8,7 @@ cd $GRASS_SRC
 BUILD_ARCH=`sh ./config.guess`
 BUILD_DIST=dist.$BUILD_ARCH
 
-if [ ! -e $BUILD_DIST ]; then
+if [ ! -d $BUILD_DIST ]; then
 	echo "$BUILD_ARCH: Build the native architecture first"
 	exit 1
 fi
@@ -19,7 +19,7 @@ for dist in dist.*; do
 		docs \
 		gui/wxpython/xml \
 	; do
-		test -e $BUILD_DIST/$i || continue
+		test -d $BUILD_DIST/$i || continue
 		rm -rf $dist/$i
 		cp -a $BUILD_DIST/$i $dist/$i
 	done

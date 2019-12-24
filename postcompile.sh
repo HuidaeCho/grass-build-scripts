@@ -11,7 +11,7 @@ DIST=dist.$ARCH
 SHARED=$ARCH.shared
 MXE_SHARED=$MXE/usr/$SHARED
 
-if [ ! -e $DIST ]; then
+if [ ! -d $DIST ]; then
 	echo "$ARCH: Build this architecture first"
 	exit 1
 fi
