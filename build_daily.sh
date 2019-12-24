@@ -31,6 +31,8 @@ shift
 cd $GRASS_SRC
 (
 tmp=`dirname $0`; GRASS_BUILD_SCRIPTS=`realpath $tmp`
+
+# NOTE: add your options here
 $GRASS_BUILD_SCRIPTS/crosscompile.sh --update --package
 
 ARCH=x86_64-w64-mingw32
