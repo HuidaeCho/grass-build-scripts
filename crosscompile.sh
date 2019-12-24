@@ -72,39 +72,42 @@ EOT
 done
 
 # see if we're inside the root of the GRASS source code
-if [ ! -e grass.pc.in ]; then
+if [ ! -f grass.pc.in ]; then
 	echo "Please run this script from the root of the GRASS source code"
 	exit 1
 fi
 
 # check paths
 errors=0
-if [ ! -e $MXE ]; then
+if [ ! -d $MXE ]; then
 	echo "$MXE: not found"
 	errors=1
 fi
-if [ ! -e $FREETYPE_INCLUDE ]; then
+if [ ! -d $FREETYPE_INCLUDE ]; then
 	echo "$FREETYPE_INCLUDE: not found"
 	errors=1
 fi
 if [ $errors -eq 1 ]; then
 	exit 1
 fi
+if [ $UPDATE -eq 1 -a ! -d .git ]; then
+	echo "not a git repository"
+	exit 1
+fi
+
+################################################################################
+# Start
+
+echo "Started cross-compilation: `date`"
+echo
 
 # update the current branch if requested
-if [ $UPDATE -eq 1 ]; then
-	if [ ! -e .git ]; then
-		echo "not a git repository"
-		exit 1
-	fi
+if [ $UPDATE -eq 1 -a -d .git ]; then
 	git pull
 fi
 
 ################################################################################
 # Compile the native architecture for generating document files
-
-echo "Started cross-compilation: `date`"
-echo
 
 CFLAGS="-g -O2 -Wall" \
 CXXFLAGS="-g -O2 -Wall" \
