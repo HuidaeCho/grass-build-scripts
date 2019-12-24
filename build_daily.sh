@@ -20,13 +20,11 @@ if [ $# -lt 1 ]; then
 	exit 1
 fi
 
-GRASS_SRC=$1
+GRASS_SRC=$1; shift
 if [ ! -d $GRASS_SRC ]; then
 	echo "$GRASS_SRC: No such directory"
 	exit 1
 fi
-
-shift
 
 cd $GRASS_SRC
 (
@@ -40,7 +38,7 @@ VERSION=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make
 DATE=`date +%Y%m%d`
 GRASS_ZIP=grass$VERSION-$ARCH-$DATE.zip
 
-for dir in "$@"; do
+for dir; do
 	delete=0
 	case "$dir" in
 	-*)
