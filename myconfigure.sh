@@ -18,24 +18,18 @@ case "$1" in
 	LDFLAGS="-lcurses" \
 	./configure \
 	--with-nls \
-	--with-cxx \
+	--with-readline \
+	--with-wxwidgets \
+	--with-freetype-includes=$FREETYPE_INC \
+	--with-bzlib \
+	--with-postgres \
 	--with-pthread \
+	--with-openmp \
 	--with-blas \
 	--with-lapack \
-	--with-openmp \
-	--with-postgres \
-	--with-sqlite \
-	--with-motif \
-	--with-freetype \
-	--with-freetype-includes=$FREETYPE_INC \
-	--with-readline \
-	--with-python \
-	--with-wxwidgets \
 	--with-geos \
 	--with-netcdf \
-	--with-zstd \
 	--with-liblas \
-	--with-bzlib \
 	--with-pdal \
 	> myconfigure.log 2>&1
 	;;
@@ -56,21 +50,17 @@ case "$1" in
 	./configure \
 	--host=$ARCH \
 	--with-nls \
+	--with-readline \
+	--with-wxwidgets \
+	--with-freetype-includes=$MXE_SHARED/include/freetype2 \
+	--with-bzlib \
+	--with-postgres \
 	--with-pthread \
+	--with-openmp \
 	--with-blas \
 	--with-lapack \
-	--with-openmp \
-	--with-postgres \
-	--with-sqlite \
-	--with-freetype \
-	--with-freetype-includes=$MXE_SHARED/include/freetype2 \
-	--with-readline \
-	--with-python \
-	--with-wxwidgets \
 	--with-geos=$MXE_SHARED/bin/geos-config \
 	--with-netcdf=$MXE_SHARED/bin/nc-config \
-	--with-zstd \
-	--with-bzlib \
 	--with-gdal=$MXE_SHARED/bin/gdal-config \
 	--with-opengl=windows \
 	> myconfigure.log 2>&1
