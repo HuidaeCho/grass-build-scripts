@@ -4,10 +4,9 @@
 #
 # Written by Huidae Cho
 #
-# Requires MXE <https://mxe.cc/> for cross-compilation
-#
-# Tested on Slackware 14.2 x86_64 with up-to-date packages from slackpkg and
-# sbopkg
+# This script requires MXE <https://mxe.cc/> for cross-compilation and was
+# tested on Slackware 14.2 x86_64 with up-to-date packages from slackpkg and
+# sbopkg.
 #
 # Basic steps:
 #
