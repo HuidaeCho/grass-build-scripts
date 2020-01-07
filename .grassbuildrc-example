@@ -1,6 +1,6 @@
 # Cross-compilation environment
 # https://mxe.cc/
-MXE=$HOME/usr/local/src/mxe
+MXE_DIR=$HOME/usr/local/src/mxe
 
 ################################################################################
 # For building the GRASS core

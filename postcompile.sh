@@ -6,13 +6,13 @@ set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_SRC
 
-ARCH=x86_64-w64-mingw32
-DIST=dist.$ARCH
-SHARED=$ARCH.shared
-MXE_SHARED=$MXE/usr/$SHARED
+arch=x86_64-w64-mingw32
+dist=dist.$arch
+shared=$arch.shared
+mxe_shared=$MXE_DIR/usr/$shared
 
-if [ ! -d $DIST ]; then
-	echo "$ARCH: Build this architecture first"
+if [ ! -d $dist ]; then
+	echo "$arch: Build this architecture first"
 	exit 1
 fi
 
@@ -77,20 +77,20 @@ for i in \
 	libzstd.dll \
 	zlib1.dll \
 ; do
-	cp -a $MXE_SHARED/bin/$i $DIST/lib
+	cp -a $mxe_shared/bin/$i $dist/lib
 done
 
 for i in \
 	proj \
 	gdal \
 ; do
-	rm -rf $DIST/share/$i
-	cp -a $MXE_SHARED/share/$i $DIST/share/$i
+	rm -rf $dist/share/$i
+	cp -a $mxe_shared/share/$i $dist/share/$i
 done
 
-tmp=`dirname $0`; GRASS_BUILD_SCRIPTS=`realpath $tmp`
-VERSION=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make`
+tmp=`dirname $0`; grass_build_scripts=`realpath $tmp`
+version=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make`
 
-rm -f $DIST/grass$VERSION.tmp
-cp -a bin.$ARCH/grass$VERSION.py $DIST/etc
-unix2dos -n $GRASS_BUILD_SCRIPTS/grass$VERSION.bat $DIST/grass$VERSION.bat
+rm -f $dist/grass$version.tmp
+cp -a bin.$arch/grass$version.py $dist/etc
+unix2dos -n $grass_build_scripts/grass$version.bat $dist/grass$version.bat

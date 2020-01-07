@@ -34,34 +34,34 @@ case "$1" in
 	> myconfigure.log 2>&1
 	;;
 -m|--mxe)
-	ARCH=x86_64-w64-mingw32
-	SHARED=$ARCH.shared
-	MXE_BIN=$MXE/usr/bin/$SHARED
-	MXE_SHARED=$MXE/usr/$SHARED
+	arch=x86_64-w64-mingw32
+	shared=$arch.shared
+	mxe_bin=$MXE_DIR/usr/bin/$shared
+	mxe_shared=$MXE_DIR/usr/$shared
 
-	CC=$MXE_BIN-gcc \
-	CXX=$MXE_BIN-g++ \
+	CC=$mxe_bin-gcc \
+	CXX=$mxe_bin-g++ \
 	CFLAGS="-g -O2 -Wall" \
 	CXXFLAGS="-g -O2 -Wall" \
-	AR=$MXE_BIN-ar \
-	RANLIB=$MXE_BIN-ranlib \
-	WINDRES=$MXE_BIN-windres \
-	PKG_CONFIG=$MXE_BIN-pkg-config \
+	AR=$mxe_bin-ar \
+	RANLIB=$mxe_bin-ranlib \
+	WINDRES=$mxe_bin-windres \
+	PKG_CONFIG=$mxe_bin-pkg-config \
 	./configure \
-	--host=$ARCH \
+	--host=$arch \
 	--with-nls \
 	--with-readline \
 	--with-wxwidgets \
-	--with-freetype-includes=$MXE_SHARED/include/freetype2 \
+	--with-freetype-includes=$mxe_shared/include/freetype2 \
 	--with-bzlib \
 	--with-postgres \
 	--with-pthread \
 	--with-openmp \
 	--with-blas \
 	--with-lapack \
-	--with-geos=$MXE_SHARED/bin/geos-config \
-	--with-netcdf=$MXE_SHARED/bin/nc-config \
-	--with-gdal=$MXE_SHARED/bin/gdal-config \
+	--with-geos=$mxe_shared/bin/geos-config \
+	--with-netcdf=$mxe_shared/bin/nc-config \
+	--with-gdal=$mxe_shared/bin/gdal-config \
 	--with-opengl=windows \
 	> myconfigure.log 2>&1
 	;;
@@ -71,7 +71,7 @@ case "$1" in
 	;;
 esac
 
-ARCH=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \t]*//; p}' include/Make/Platform.make`
+arch=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \t]*//; p}' include/Make/Platform.make`
 for i in \
 	myconfigure.log \
 	config.log \
@@ -79,5 +79,5 @@ for i in \
 	include/Make/Doxyfile_arch_html \
 	include/Make/Doxyfile_arch_latex \
 ; do
-	cp -a $i $i.$ARCH
+	cp -a $i $i.$arch
 done

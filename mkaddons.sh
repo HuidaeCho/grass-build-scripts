@@ -5,11 +5,11 @@ set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_ADDONS_SRC/grass7
 
-tmp=`dirname $0`; GRASS_BUILD_SCRIPTS=`realpath $tmp`
-ARCH=`$GRASS_BUILD_SCRIPTS/switcharch.sh --query`
+tmp=`dirname $0`; grass_build_scripts=`realpath $tmp`
+arch=`$grass_build_scripts/switcharch.sh --query`
 
 make \
-MODULE_TOPDIR=$GRASS_SRC/dist.$ARCH \
+MODULE_TOPDIR=$GRASS_SRC/dist.$arch \
 LIBREDWGLIBPATH=-L$LIBREDWG_LIB \
 LIBREDWGINCPATH=-I$LIBREDWG_INC \
 "$@" > $GRASS_SRC/mkaddons.log 2>&1
@@ -19,5 +19,5 @@ for i in \
 	mkaddons.log \
 	error.log \
 ; do
-	cp -a $i $i.$ARCH
+	cp -a $i $i.$arch
 done

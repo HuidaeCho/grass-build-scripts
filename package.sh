@@ -6,19 +6,19 @@ set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_SRC
 
-ARCH=x86_64-w64-mingw32
-DIST=dist.$ARCH
+arch=x86_64-w64-mingw32
+dist=DIST.$arch
 
-if [ ! -d $DIST ]; then
-	echo "$ARCH: Build this architecture first"
+if [ ! -d $dist ]; then
+	echo "$arch: Build this architecture first"
 	exit 1
 fi
 
-VERSION=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make`
-DATE=`date +%Y%m%d`
+version=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make`
+date=`date +%Y%m%d`
 
 rm -f grass
-ln -s $DIST grass
-rm -f grass*-$ARCH-*.zip
-zip -r grass$VERSION-$ARCH-$DATE.zip grass
+ln -s $dist grass
+rm -f grass*-$arch-*.zip
+zip -r grass$version-$arch-$date.zip grass
 rm -f grass

@@ -21,7 +21,7 @@ backup() {
 		mymake.log \
 		error.log \
 	; do
-		test -f $i && cp -a $i $i.$ARCH
+		test -f $i && cp -a $i $i.$arch
 	done
 }
 
@@ -35,58 +35,58 @@ restore() {
 		mymake.log \
 		error.log \
 	; do
-		test -f $i.$ARCH && cp -a $i.$ARCH $i
+		test -f $i.$arch && cp -a $i.$arch $i
 	done
 }
 
-MAKE=include/Make/Platform.make
+make=include/Make/Platform.make
 
-if [ -f $MAKE ]; then
-	CUR_ARCH=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \t]*//; p}' $MAKE`
+if [ -f $make ]; then
+	cur_arch=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \t]*//; p}' $make`
 else
-	CUR_ARCH=
+	cur_arch=
 fi
 
 case "$1" in
 -q|--query)
-	if [ -z "$CUR_ARCH" ]; then
+	if [ -z "$cur_arch" ]; then
 		echo "Current architecture undefined"
 		exit 1
 	fi
-	echo $CUR_ARCH
+	echo $cur_arch
 	exit
 	;;
 ""|-n|--native)
-	ARCH=`sh ./config.guess`
+	arch=`sh ./config.guess`
 	;;
 -m|--mxe)
-	ARCH=x86_64-w64-mingw32
+	arch=x86_64-w64-mingw32
 	shift
 	;;
 *)
-	ARCH=$1
+	arch=$1
 	shift
 	;;
 esac
 
-ARCH_MAKE=include/Make/Platform.make.$ARCH
+arch_make=include/Make/Platform.make.$arch
 
-if [ "$ARCH" = "$CUR_ARCH" ]; then
-	if [ -f $ARCH_MAKE ]; then
-		if diff $ARCH_MAKE $MAKE > /dev/null; then
-			echo "$ARCH: Architecture already up to date"
+if [ "$arch" = "$cur_arch" ]; then
+	if [ -f $arch_make ]; then
+		if diff $arch_make $make > /dev/null; then
+			echo "$arch: Architecture already up to date"
 		else
 			restore
-			echo "$ARCH: Architecture restored"
+			echo "$arch: Architecture restored"
 		fi
 	else
 		backup
-		echo "$ARCH: Architecture backed up"
+		echo "$arch: Architecture backed up"
 	fi
-elif [ -f $ARCH_MAKE ]; then
+elif [ -f $arch_make ]; then
 	restore
-	echo "$ARCH: Architecture restored"
+	echo "$arch: Architecture restored"
 else
-	echo "$ARCH: Architecture not configured"
+	echo "$arch: Architecture not configured"
 	exit 1
 fi

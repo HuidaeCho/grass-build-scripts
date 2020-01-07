@@ -5,22 +5,22 @@ set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_SRC
 
-BUILD_ARCH=`sh ./config.guess`
-BUILD_DIST=dist.$BUILD_ARCH
+build_arch=`sh ./config.guess`
+build_dist=dist.$build_arch
 
-if [ ! -d $BUILD_DIST ]; then
-	echo "$BUILD_ARCH: Build the native architecture first"
+if [ ! -d $build_dist ]; then
+	echo "$build_arch: Build the native architecture first"
 	exit 1
 fi
 
 for dist in dist.*; do
-	test $dist = $BUILD_DIST && continue
+	test $dist = $build_dist && continue
 	for i in \
 		docs \
 		gui/wxpython/xml \
 	; do
-		test -d $BUILD_DIST/$i || continue
+		test -d $build_dist/$i || continue
 		rm -rf $dist/$i
-		cp -a $BUILD_DIST/$i $dist/$i
+		cp -a $build_dist/$i $dist/$i
 	done
 done
