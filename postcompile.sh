@@ -88,7 +88,7 @@ for i in \
 	cp -a $mxe_shared/share/$i $dist/share/$i
 done
 
-tmp=`dirname $0`; grass_build_scripts=`realpath $tmp`
+tmp=`realpath $0`; grass_build_scripts=`dirname $tmp`
 version=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make`
 
 rm -f $dist/grass$version.tmp

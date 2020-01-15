@@ -28,7 +28,7 @@ fi
 
 cd $grass_src
 (
-tmp=`dirname $0`; grass_build_scripts=`realpath $tmp`
+tmp=`realpath $0`; grass_build_scripts=`dirname $tmp`
 
 # NOTE: add your options here
 $grass_build_scripts/crosscompile.sh --update --package

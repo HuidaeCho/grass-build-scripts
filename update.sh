@@ -10,7 +10,7 @@
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 
-tmp=`dirname $0`; grass_build_scripts=`realpath $tmp`
+tmp=`realpath $0`; grass_build_scripts=`dirname $tmp`
 PATH="$grass_build_scripts:$PATH"
 
 (
