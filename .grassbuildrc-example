@@ -12,8 +12,8 @@ FREETYPE_INC=/usr/include/freetype2
 
 ################################################################################
 # For building gdal-grass plugins
-# https://download.osgeo.org/gdal/3.0.2/gdal-grass-3.0.2.tar.gz
-GDAL_GRASS_SRC=$HOME/usr/local/src/gdal-grass-3.0.2
+# https://download.osgeo.org/gdal/3.0.4/gdal-grass-3.0.4.tar.gz
+GDAL_GRASS_SRC=$HOME/usr/local/src/gdal-grass-3.0.4
 
 # $GDAL_DRIVER_PATH where these plugins will be installed
 GDAL_PLUGINS_DIR=$HOME/usr/local/lib64/gdalplugins
