@@ -9,7 +9,7 @@ tmp=`realpath $0`; grass_build_scripts=`dirname $tmp`
 arch=`$grass_build_scripts/switcharch.sh --query`
 
 make \
-MODULE_TOPDIR=$GRASS_SRC/dist.$arch \
+MODULE_TOPDIR=$GRASS_SRC \
 LIBREDWGLIBPATH=-L$LIBREDWG_LIB \
 LIBREDWGINCPATH=-I$LIBREDWG_INC \
 "$@" > $GRASS_SRC/mkaddons.log 2>&1
