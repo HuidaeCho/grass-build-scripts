@@ -25,7 +25,7 @@ make clean install
 
 cd $GRASS_ADDONS_SRC
 merge.sh
-cd grass7
+cd src
 mkaddons.sh clean default
 
 case "$1" in
