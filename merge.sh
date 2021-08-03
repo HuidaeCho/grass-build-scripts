@@ -32,3 +32,8 @@ if echo "$branches" | grep -q '^origin/hcho$'; then
 	# merge master already merged with upstream/master or origin/master
 	git merge master
 fi
+# if upstream/grass7 exists, assume it's OSGeo's grass-addons repo
+if echo "$branches" | grep -q '^upstream/grass7'; then
+	git checkout grass7
+	git merge upstream/grass7
+fi
