@@ -285,6 +285,7 @@ cp -a bin.$arch/grass$version.py $dist/etc
 
 cat<<'EOT' > $dist/grass$version.bat
 @echo off
+setlocal EnableDelayedExpansion
 
 rem Change this variable to override auto-detection of python.exe in PATH
 set GRASS_PYTHON=C:\Python38\python.exe
@@ -312,7 +313,7 @@ if not exist %GISBASE%\etc\fontcap (
 
 if not exist "%GRASS_PYTHON%" (
 	set GRASS_PYTHON=
-	for /f usebackq %%i in (`where python.exe`) do set GRASS_PYTHON=%%i
+	for /f usebackq %%i in (`where python.exe`) do if "!GRASS_PYTHON!"=="" set GRASS_PYTHON=%%i
 )
 if "%GRASS_PYTHON%"=="" (
 	echo.
