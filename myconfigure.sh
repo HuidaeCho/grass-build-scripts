@@ -34,6 +34,7 @@ case "$1" in
 	> myconfigure.log 2>&1
 	;;
 -m|--mxe)
+	build_arch=x86_64-pc-linux-gnu
 	arch=x86_64-w64-mingw32
 	shared=$arch.shared
 	mxe_bin=$MXE_DIR/usr/bin/$shared
@@ -48,6 +49,7 @@ case "$1" in
 	WINDRES=$mxe_bin-windres \
 	PKG_CONFIG=$mxe_bin-pkg-config \
 	./configure \
+	--build=$build_arch \
 	--host=$arch \
 	--with-nls \
 	--with-readline \
