@@ -2,7 +2,7 @@
 # This script merges remote branches.
 
 # see if we're inside the root of the GRASS source code
-if [ ! -f SUBMITTING ]; then
+if [ ! -f CONTRIBUTING.md ]; then
 	echo "Please run this script from the root of the GRASS source code"
 	exit 1
 fi
