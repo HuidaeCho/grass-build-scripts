@@ -7,7 +7,7 @@ set -e
 cd $GRASS_SRC
 
 arch=x86_64-w64-mingw32
-dist=DIST.$arch
+dist=dist.$arch
 
 if [ ! -d $dist ]; then
 	echo "$arch: Build this architecture first"

@@ -20,7 +20,7 @@ for i in \
 	libblas.dll \
 	libbz2.dll \
 	libcairo-2.dll \
-	libcrypto-1_1-x64.dll \
+	libcrypto-3-x64.dll \
 	libcurl-4.dll \
 	libdf-0.dll \
 	libexpat-1.dll \
@@ -31,10 +31,10 @@ for i in \
 	libgcc_s_seh-1.dll \
 	libgcrypt-20.dll \
 	libgdal-20.dll \
-	libgeos-3-6-2.dll \
+	libgeos-3-9-1.dll \
 	libgeos_c-1.dll \
 	libgeotiff-2.dll \
-	libgfortran-3.dll \
+	libgfortran-5.dll \
 	libgif-7.dll \
 	libglib-2.0-0.dll \
 	libgnurx-0.dll \
@@ -66,7 +66,7 @@ for i in \
 	libspatialite-7.dll \
 	libsqlite3-0.dll \
 	libssh2-1.dll \
-	libssl-1_1-x64.dll \
+	libssl-3-x64.dll \
 	libstdc++-6.dll \
 	libtermcap.dll \
 	libtiff-5.dll \
@@ -91,6 +91,6 @@ done
 tmp=`realpath $0`; grass_build_scripts=`dirname $tmp`
 version=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make`
 
-rm -f $dist/grass$version.tmp
-cp -a bin.$arch/grass$version.py $dist/etc
-unix2dos -n $grass_build_scripts/grass$version.bat $dist/grass$version.bat
+rm -f $dist/grass.tmp
+cp -a bin.$arch/grass.py $dist/etc
+unix2dos -n $grass_build_scripts/grass.bat $dist/grass.bat
