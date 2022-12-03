@@ -2,21 +2,21 @@
 # This script is meant to be run by Task Scheduler.
 #
 # To build the latest
-# /usr/local/src/grass-buildw-scripts/build_daily.sh /usr/local/src/grass
+# /usr/local/src/grass-buildw-scripts/build.sh /usr/local/src/grass
 #
 # To build the latest and copy it to ~/archive and /www/software
-# /usr/local/src/grass-build-scripts/build_daily.sh /usr/local/src/grass
+# /usr/local/src/grass-build-scripts/build.sh /usr/local/src/grass
 #	~/archive /www/software
 #
 # To build the latest and copy it to ~/archive and /www/software, but
 # delete any previous packages from /www/software leaving the latest only
-# /usr/local/src/grass-build-scripts/build_daily.sh /usr/local/src/grass
+# /usr/local/src/grass-build-scripts/build.sh /usr/local/src/grass
 #	~/archive -/www/software
 
 set -e
 
 if [ $# -lt 1 ]; then
-	echo "Usage: build_daily.sh /path/to/grass/source [/deploy/path1 /deploy/paty2 ...]"
+	echo "Usage: build.sh /path/to/grass/source [/deploy/path1 /deploy/paty2 ...]"
 	exit 1
 fi
 
@@ -52,4 +52,4 @@ for dir; do
 	fi
  	cp -a $grass_zip $dir
 done
-) > build_daily.log 2>&1
+) > build.log 2>&1
