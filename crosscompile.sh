@@ -72,7 +72,7 @@ EOT
 		package=1
 		;;
 	*)
-		echo "$opt: unknown option"
+		echo "$opt: Unknown option"
 		exit 1
 		;;
 	esac
@@ -87,15 +87,15 @@ fi
 # check paths
 errors=0
 if [ ! -d $mxe_path ]; then
-	echo "$mxe_path: not found"
+	echo "$mxe_path: Not found"
 	errors=1
 fi
 if [ ! -d $freetype_include ]; then
-	echo "$freetype_include: not found"
+	echo "$freetype_include: Not found"
 	errors=1
 fi
 if [ $update -eq 1 -a ! -d .git ]; then
-	echo "not a git repository"
+	echo "Not a git repository"
 	errors=1
 fi
 if [ $errors -eq 1 ]; then

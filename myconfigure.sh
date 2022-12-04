@@ -1,6 +1,6 @@
 #!/bin/sh
 # This script configures include/Make/Platform.make and other files for
-# building GRASS GIS. It should be run from the root of the GRASS source code.
+# building GRASS GIS.
 #
 # Usage:
 #	myconfigure.sh		# configure for native binaries

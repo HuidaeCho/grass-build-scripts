@@ -1,39 +1,20 @@
 #!/bin/sh
-# This script merges remote branches.
+# This script merges upstream branches.
 
-# see if we're inside the root of the GRASS source code
-if [ ! -f CONTRIBUTING.md ]; then
-	echo "Please run this script from the root of the GRASS source code"
-	exit 1
-fi
-if [ ! -d .git ]; then
-	echo "not a git repository"
-	exit 1
-fi
+set -e
 
-branches=`git branch -a --format='%(refname:short)'`
+remote=`git remote -v | grep "git@github.com:OSGeo/"`
+upstream=`echo $remote | sed 's/ .*//'`
+repo=`echo $remote | sed 's#^.*OSGeo/\|\.git .*##g'`
 
-git fetch --all
-git checkout main
-# if upstream/main exists, assume it's OSGeo's main branch
-if echo "$branches" | grep -q '^upstream/main$'; then
-	# merge OSGeo's main
-	git merge upstream/main
+if [ $repo = "grass" ]; then
+	branch=main
+elif [ $repo = "grass-addons" ]; then
+	branch=grass8
 else
-	# merge origin/main (either OSGeo's or HuidaeCho's main)
-	git merge origin/main
+	exit 1
 fi
-# if origin/hcho exists, assume it's HuidaeCho's hcho branch
-if echo "$branches" | grep -q '^origin/hcho$'; then
-	# use hcho because he's cool ;-)
-	git checkout hcho
-	# merge origin/hcho
-	git merge origin/hcho
-	# merge main already merged with upstream/main or origin/main
-	git merge main
-fi
-# if upstream/grass8 exists, assume it's OSGeo's grass-addons repo
-if echo "$branches" | grep -q '^upstream/grass8'; then
-	git checkout grass8
-	git merge upstream/grass8
-fi
+
+git fetch --all --prune
+git checkout $branch
+git rebase $upstream/$branch

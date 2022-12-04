@@ -1,6 +1,5 @@
 #!/bin/sh
 # This script builds GRASS GIS for an architecture selected by switcharch.sh.
-# It should be run from the root of the GRASS source code.
 
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}

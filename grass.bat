@@ -83,5 +83,5 @@ if not exist "%GISBASE%\etc\fontcap" (
 	popd
 )
 
-"%GRASS_PYTHON%" "%GISBASE%\etc\grass80.py" %*
+"%GRASS_PYTHON%" "%GISBASE%\etc\grass83.py" %*
 if %ERRORLEVEL% geq 1 pause
