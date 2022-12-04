@@ -86,9 +86,7 @@ if [ $mxe -eq 1 ]; then
 	switcharch.sh
 fi
 
-if [ $package -eq 1 ]; then
-	package.sh
-fi
+[ $package -eq 1 ] && package.sh
 
 echo
 echo "Completed compilation: `date`"
