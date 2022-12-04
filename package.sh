@@ -20,5 +20,5 @@ cp -a bin.$arch/grass.bat dist.$arch
 rm -f grass
 ln -s dist.$arch grass
 rm -f grass*-$arch-*.zip
-zip -r grass$version-$arch-$date.zip grass
+zip -r grass$version-$arch-$date.zip grass -x "*/__pycache__/*"
 rm -f grass
