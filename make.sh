@@ -8,13 +8,10 @@ set -e
 grass_build_scripts=$(dirname $(realpath $0))
 arch=`$grass_build_scripts/switcharch.sh --query`
 
-opt=$1
-shift
-
-case "$opt" in
+case "$1" in
 -h|--help)
 	cat<<'EOT'
-Usage: make.sh [OPTIONS]
+Usage: make.sh [OPTIONS] [TARGETS]
 
 -h, --help      display this help message
     --addons    make addons (default: GRASS)
@@ -23,6 +20,20 @@ Usage: make.sh [OPTIONS]
 EOT
 	exit
 	;;
+--addons|--addon|--gdal)
+	opt=$1
+	shift
+	;;
+-*)
+	echo "$1: Unknown option"
+	exit 1
+	;;
+*)
+	opt=""
+	;;
+esac
+
+case "$opt" in
 "")
 	cd $GRASS_SRC
 	make "$@"
@@ -39,9 +50,6 @@ EOT
 	cd $GDAL_GRASS_SRC
 	make "$@"
 	;;
-*)
-	echo "$opt: Unknown option"
-	exit 1
 esac
 
 if [ "$opt" != "--gdal" ]; then

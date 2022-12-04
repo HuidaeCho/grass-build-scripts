@@ -47,6 +47,7 @@ Usage: switcharch.sh [OPTIONS]
 	       (default: switch to the native architecture)
     --query    query the current architecture
 EOT
+	exit
 	;;
 --query)
 	if [ -z "$cur_arch" ]; then
