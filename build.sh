@@ -72,10 +72,11 @@ if [ $mxe -eq 1 ]; then
 	configure.sh --mxe
 	make.sh clean default
 
-	if [ $gdal -eq 1 ]; then
-		configure.sh --gdal-mxe
-		make.sh --gdal clean install
-	fi
+	# gdal-grass doesn't support cross-compilation!
+#	if [ $gdal -eq 1 ]; then
+#		configure.sh --gdal-mxe
+#		make.sh --gdal clean install
+#	fi
 
 	[ $addons -eq 1 ] && make.sh --addons clean default
 

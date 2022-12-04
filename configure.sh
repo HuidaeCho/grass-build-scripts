@@ -82,6 +82,9 @@ EOT
 	--with-autoload=$GDAL_PLUGINS_DIR
 	;;
 -G|--gdal-mxe)
+	echo "gdal-grass doesn't support cross-compilation!"
+	exit 1
+
 	cd $GDAL_GRASS_SRC
 	shared=$target_arch.shared
 	mxe_bin=$MXE_DIR/usr/bin/$shared
@@ -93,9 +96,8 @@ EOT
 	CXXFLAGS="-g -O2 -Wall" \
 	AR=$mxe_bin-ar \
 	RANLIB=$mxe_bin-ranlib \
-	WINDRES=$mxe_bin-windres \
-	PKG_CONFIG=$mxe_bin-pkg-config \
 	./configure \
+	--with-gdal=$mxe_bin-gdal-config \
 	--with-grass=$GRASS_SRC/dist.$target_arch \
 	--with-autoload=$GRASS_SRC/dist.$target_arch/lib
 	;;
