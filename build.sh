@@ -36,6 +36,10 @@ EOT
 	--package)
 		package=1
 		;;
+	*)
+		"$opt: Unknown option"
+		exit 1
+		;;
 	esac
 done
 
@@ -44,37 +48,27 @@ export PATH="$grass_build_scripts:$PATH"
 echo "Started compilation: `date`"
 echo
 
-if [ $merge -eq 1 ]; then (
-	cd $GRASS_SRC
-	merge.sh
-) fi
+[ $merge -eq 1 ] && merge.sh
 configure.sh
 make.sh clean default
-(
-cd $GDAL_GRASS_SRC
-configure-gdal-grass.sh
-make clean install
-)
+
+[ $merge -eq 1 ] && merge.sh --gdal
+configure.sh --gdal
+make.sh --gdal clean install
 
 if [ $addons -eq 1 ]; then
-	if [ $merge -eq 1 ]; then (
-		cd $GRASS_ADDONS_SRC
-		merge.sh
-	) fi
-	mkaddons.sh clean default
+	[ $merge -eq 1 ] && merge.sh --addons
+	make.sh --addons clean default
 fi
 
 if [ $mxe -eq 1 ]; then
 	configure.sh --mxe
 	make.sh clean default
-	(
-	cd $GDAL_GRASS_SRC
-	configure-gdal-grass.sh --mxe
-	make clean install
-	)
-	if [ $addons -eq 1 ]; then
-		mkaddons.sh clean default
-	fi
+
+	configure.sh --gdal-mxe
+	make.sh --gdal clean install
+
+	[ $addons -eq 1 ] && make.sh --addons clean default
 
 	copydocs.sh
 	copydlls.sh

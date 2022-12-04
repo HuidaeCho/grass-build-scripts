@@ -1,7 +1,5 @@
 #!/bin/sh
-# This script switches the architecture before compiling GRASS GIS. It should
-# be run from the root of the GRASS source code.
-#
+# This script switches the architecture before compiling GRASS GIS.
 
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
@@ -45,8 +43,8 @@ case "$1" in
 Usage: switcharch.sh [OPTIONS]
 
 -h, --help     display this help message
-    --mxe      switch the current architecture to x86_64-w64-mingw32
-	       (default: switch the current architecture to native)
+    --mxe      switch to x86_64-w64-mingw32
+	       (default: switch to the native architecture)
     --query    query the current architecture
 EOT
 	;;
@@ -58,7 +56,7 @@ EOT
 	echo $cur_arch
 	exit
 	;;
-""|--native)
+"")
 	arch=`sh ./config.guess`
 	;;
 --mxe)
@@ -66,8 +64,8 @@ EOT
 	shift
 	;;
 *)
-	arch=$1
-	shift
+	echo "$1: Unknown option"
+	exit
 	;;
 esac
 
