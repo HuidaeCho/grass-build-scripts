@@ -12,19 +12,19 @@ case "$1" in
 Usage: merge.sh [OPTIONS]
 
 -h, --help      display this help message
-    --addons    merge GRASS addons (default: GRASS)
-    --gdal      merge gdal-grass
+-a, --addons    merge GRASS addons (default: GRASS)
+-g, --gdal      merge gdal-grass
 EOT
 	exit
 	;;
 "")
 	cd $GRASS_SRC
 	;;
---addons)
+-a|--addons)
 	cd $GRASS_ADDONS_SRC
 	branch=grass8
 	;;
---gdal)
+-g|--gdal)
 	cd $GDAL_GRASS_SRC
 	;;
 *)

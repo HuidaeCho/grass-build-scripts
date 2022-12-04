@@ -43,13 +43,13 @@ case "$1" in
 Usage: switcharch.sh [OPTIONS]
 
 -h, --help     display this help message
-    --mxe      switch to x86_64-w64-mingw32
+-M, --mxe      switch to x86_64-w64-mingw32
 	       (default: switch to the native architecture)
-    --query    query the current architecture
+-q, --query    query the current architecture
 EOT
 	exit
 	;;
---query)
+-q|--query)
 	if [ -z "$cur_arch" ]; then
 		echo "Current architecture undefined"
 		exit 1
@@ -60,7 +60,7 @@ EOT
 "")
 	arch=`sh ./config.guess`
 	;;
---mxe)
+-M|--mxe)
 	arch=x86_64-w64-mingw32
 	shift
 	;;

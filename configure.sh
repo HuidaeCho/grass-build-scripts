@@ -11,10 +11,10 @@ case "$1" in
 Usage: configure.sh [OPTIONS]
 
 -h, --help        display this help message
-    --mxe         configure GRASS for x86_64-w64-mingw32 binaries
+-M, --mxe         configure GRASS for x86_64-w64-mingw32 binaries
 	          (default: configure GRASS for native binaries)
-    --gdal        configure gdal-grass for native binaries
-    --gdal-mxe    configure gdal-grass for x86_64-w64-mingw32 binaries
+-g, --gdal        configure gdal-grass for native binaries
+-G, --gdal-mxe    configure gdal-grass for x86_64-w64-mingw32 binaries
 EOT
 	exit
 	;;
@@ -39,7 +39,7 @@ EOT
 	--with-liblas \
 	--with-pdal \
 	;;
---mxe)
+-M|--mxe)
 	cd $GRASS_SRC
 	build_arch=x86_64-pc-linux-gnu
 	arch=x86_64-w64-mingw32
@@ -73,14 +73,14 @@ EOT
 	--with-gdal=$mxe_shared/bin/gdal-config \
 	--with-opengl=windows \
 	;;
---gdal)
+-g|--gdal)
 	cd $GDAL_GRASS_SRC
 	CXX="g++ -std=c++11" \
 	./configure \
 	--with-grass=$GRASS_SRC/dist.x86_64-pc-linux-gnu \
 	--with-autoload=$GDAL_PLUGINS_DIR
 	;;
---gdal-mxe)
+-G|--gdal-mxe)
 	cd $GDAL_GRASS_SRC
 	build_arch=x86_64-pc-linux-gnu
 	arch=x86_64-w64-mingw32
@@ -106,7 +106,7 @@ EOT
 esac
 
 case "$1" in
-""|--mxe)
+""|-M|--mxe)
 	arch=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \t]*//; p}' include/Make/Platform.make`
 	for i in \
 		config.log \

@@ -17,23 +17,23 @@ for opt; do
 Usage: build.sh [OPTIONS]
 
 -h, --help       display this help message
-    --merge      merge the upstream repositories
-    --addons     build addons
-    --mxe        cross-compile using MXE
-    --package    package the build as grass{VERSION}-x86_64-w64-mingw32-{YYYYMMDD}.zip
+-m, --merge      merge the upstream repositories
+-a, --addons     build addons
+-M, --mxe        cross-compile using MXE
+-p, --package    package the build as grass{VERSION}-x86_64-w64-mingw32-{YYYYMMDD}.zip
 EOT
 		exit
 		;;
-	--merge)
+	-m|--merge)
 		merge=1
 		;;
-	--addons)
+	-a|--addons)
 		addons=1
 		;;
-	--mxe)
+	-M|--mxe)
 		mxe=1
 		;;
-	--package)
+	-p|--package)
 		package=1
 		;;
 	*)

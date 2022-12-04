@@ -14,13 +14,13 @@ case "$1" in
 Usage: make.sh [OPTIONS] [TARGETS]
 
 -h, --help      display this help message
-    --addons    make addons (default: GRASS)
-    --addon     make an addon
-    --gdal      make gdal-grass
+-a, --addons    make addons (default: GRASS)
+-A, --addon     make an addon
+-g, --gdal      make gdal-grass
 EOT
 	exit
 	;;
---addons|--addon|--gdal)
+-a|-A|-g|--addons|--addon|--gdal)
 	opt=$1
 	shift
 	;;
@@ -38,7 +38,7 @@ case "$opt" in
 	cd $GRASS_SRC
 	make "$@"
 	;;
---addons|--addon)
+-a|-A|--addons|--addon)
 	test "$opt" = "--addons" && cd $GRASS_ADDONS_SRC/src
 	make \
 	MODULE_TOPDIR=$GRASS_SRC \
@@ -46,13 +46,13 @@ case "$opt" in
 	LIBREDWGINCPATH=-I$LIBREDWG_INC \
 	"$@"
 	;;
---gdal)
+-g|--gdal)
 	cd $GDAL_GRASS_SRC
 	make "$@"
 	;;
 esac
 
-if [ "$opt" != "--gdal" ]; then
+if [ "$opt" != "-g" -a "$opt" != "--gdal" ]; then
 	cd $GRASS_SRC
 	for i in \
 		error.log \
