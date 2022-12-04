@@ -5,6 +5,9 @@
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 
+build_arch=x86_64-pc-linux-gnu
+target_arch=x86_64-w64-mingw32
+
 case "$1" in
 -h|--help)
 	cat<<'EOT'
@@ -41,9 +44,7 @@ EOT
 	;;
 -M|--mxe)
 	cd $GRASS_SRC
-	build_arch=x86_64-pc-linux-gnu
-	arch=x86_64-w64-mingw32
-	shared=$arch.shared
+	shared=$target_arch.shared
 	mxe_bin=$MXE_DIR/usr/bin/$shared
 	mxe_shared=$MXE_DIR/usr/$shared
 
@@ -57,7 +58,7 @@ EOT
 	PKG_CONFIG=$mxe_bin-pkg-config \
 	./configure \
 	--build=$build_arch \
-	--host=$arch \
+	--host=$target_arch \
 	--with-nls \
 	--with-readline \
 	--with-wxwidgets \
@@ -77,16 +78,15 @@ EOT
 	cd $GDAL_GRASS_SRC
 	CXX="g++ -std=c++11" \
 	./configure \
-	--with-grass=$GRASS_SRC/dist.x86_64-pc-linux-gnu \
+	--with-grass=$GRASS_SRC/dist.$build_arch \
 	--with-autoload=$GDAL_PLUGINS_DIR
 	;;
 -G|--gdal-mxe)
 	cd $GDAL_GRASS_SRC
-	build_arch=x86_64-pc-linux-gnu
-	arch=x86_64-w64-mingw32
-	shared=$arch.shared
+	shared=$target_arch.shared
 	mxe_bin=$MXE_DIR/usr/bin/$shared
 	mxe_shared=$MXE_DIR/usr/$shared
+
 	CC=$mxe_bin-gcc \
 	CXX=$mxe_bin-g++ \
 	CFLAGS="-g -O2 -Wall" \
@@ -96,8 +96,8 @@ EOT
 	WINDRES=$mxe_bin-windres \
 	PKG_CONFIG=$mxe_bin-pkg-config \
 	./configure \
-	--with-grass=$GRASS_SRC/dist.x86_64-pc-linux-gnu \
-	--with-autoload=$GDAL_PLUGINS_DIR
+	--with-grass=$GRASS_SRC/dist.$target_arch \
+	--with-autoload=$GRASS_SRC/dist.$target_arch/lib
 	;;
 *)
 	echo "$1: Unknown option"
