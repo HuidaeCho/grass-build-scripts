@@ -1,6 +1,5 @@
 #!/bin/sh
-# This script post-processes the cross-compiled MinGW build for starting up
-# GRASS GIS from MS Windows.
+# This script copies dependent DLLs from MXE.
 
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
@@ -87,10 +86,3 @@ for i in \
 	rm -rf $dist/share/$i
 	cp -a $mxe_shared/share/$i $dist/share/$i
 done
-
-tmp=`realpath $0`; grass_build_scripts=`dirname $tmp`
-version=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make`
-
-rm -f $dist/grass.tmp
-cp -a bin.$arch/grass.py $dist/etc
-unix2dos -n $grass_build_scripts/grass.bat $dist/grass.bat

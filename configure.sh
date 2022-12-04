@@ -1,18 +1,22 @@
 #!/bin/sh
 # This script configures include/Make/Platform.make and other files for
 # building GRASS GIS.
-#
-# Usage:
-#	myconfigure.sh		# configure for native binaries
-#	myconfigure.sh --mxe	# configure for x86_64-w64-mingw32 binaries
-#				# using MXE
 
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 cd $GRASS_SRC
 
 case "$1" in
-""|-n|--native)
+-h|--help)
+	cat<<'EOT'
+Usage: configure.sh [OPTIONS]
+
+-h, --help    display this help message
+    --mxe     configure for x86_64-w64-mingw32 binaries using MXE
+	      (default: configure for native binaries)
+EOT
+	;;
+""|--native)
 	CFLAGS="-g -O2 -Wall" \
 	CXXFLAGS="-g -O2 -Wall" \
 	LDFLAGS="-lcurses" \
@@ -31,9 +35,8 @@ case "$1" in
 	--with-netcdf \
 	--with-liblas \
 	--with-pdal \
-	> myconfigure.log 2>&1
 	;;
--m|--mxe)
+--mxe)
 	build_arch=x86_64-pc-linux-gnu
 	arch=x86_64-w64-mingw32
 	shared=$arch.shared
@@ -65,7 +68,6 @@ case "$1" in
 	--with-netcdf=$mxe_shared/bin/nc-config \
 	--with-gdal=$mxe_shared/bin/gdal-config \
 	--with-opengl=windows \
-	> myconfigure.log 2>&1
 	;;
 *)
 	echo "$1: Architecture not supported"
@@ -75,7 +77,6 @@ esac
 
 arch=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \t]*//; p}' include/Make/Platform.make`
 for i in \
-	myconfigure.log \
 	config.log \
 	include/Make/Platform.make \
 	include/Make/Doxyfile_arch_html \

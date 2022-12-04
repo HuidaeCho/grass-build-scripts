@@ -14,10 +14,9 @@ fi
 
 arch=`sed -n '/^ARCH[ \t]*=/{s/^.*=[ \]*//; p}' $make`
 
-make "$@" > mymake.log 2>&1
+make "$@"
 
 for i in \
-	mymake.log \
 	error.log \
 ; do
 	cp -a $i $i.$arch

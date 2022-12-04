@@ -7,9 +7,8 @@ set -e
 cd $GRASS_SRC
 
 arch=x86_64-w64-mingw32
-dist=dist.$arch
 
-if [ ! -d $dist ]; then
+if [ ! -d dist.$arch ]; then
 	echo "$arch: Build this architecture first"
 	exit 1
 fi
@@ -17,8 +16,9 @@ fi
 version=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make`
 date=`date +%Y%m%d`
 
+cp -a bin.$arch/grass.bat dist.$arch
 rm -f grass
-ln -s $dist grass
+ln -s dist.$arch grass
 rm -f grass*-$arch-*.zip
 zip -r grass$version-$arch-$date.zip grass
 rm -f grass

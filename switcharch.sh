@@ -2,10 +2,6 @@
 # This script switches the architecture before compiling GRASS GIS. It should
 # be run from the root of the GRASS source code.
 #
-# Usage:
-#	switcharch.sh		# switch the current architecture to native
-#	switcharch.sh --mxe	# switch the current architecture to x86_64-w64-mingw32
-#	switcharch.sh --query	# query the current architecture
 
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
@@ -13,12 +9,10 @@ cd $GRASS_SRC
 
 backup() {
 	for i in \
-		myconfigure.log \
 		config.log \
 		include/Make/Platform.make \
 		include/Make/Doxyfile_arch_html \
 		include/Make/Doxyfile_arch_latex \
-		mymake.log \
 		error.log \
 	; do
 		test -f $i && cp -a $i $i.$arch
@@ -27,12 +21,10 @@ backup() {
 
 restore() {
 	for i in \
-		myconfigure.log \
 		config.log \
 		include/Make/Platform.make \
 		include/Make/Doxyfile_arch_html \
 		include/Make/Doxyfile_arch_latex \
-		mymake.log \
 		error.log \
 	; do
 		test -f $i.$arch && cp -a $i.$arch $i
@@ -48,7 +40,17 @@ else
 fi
 
 case "$1" in
--q|--query)
+-h|--help)
+	cat<<'EOT'
+Usage: switcharch.sh [OPTIONS]
+
+-h, --help     display this help message
+    --mxe      switch the current architecture to x86_64-w64-mingw32
+	       (default: switch the current architecture to native)
+    --query    query the current architecture
+EOT
+	;;
+--query)
 	if [ -z "$cur_arch" ]; then
 		echo "Current architecture undefined"
 		exit 1
@@ -56,10 +58,10 @@ case "$1" in
 	echo $cur_arch
 	exit
 	;;
-""|-n|--native)
+""|--native)
 	arch=`sh ./config.guess`
 	;;
--m|--mxe)
+--mxe)
 	arch=x86_64-w64-mingw32
 	shift
 	;;

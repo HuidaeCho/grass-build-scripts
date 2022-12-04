@@ -5,7 +5,7 @@
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 
-tmp=`realpath $0`; grass_build_scripts=`dirname $tmp`
+grass_build_scripts=$(dirname $(realpath $0))
 arch=`$grass_build_scripts/switcharch.sh --query`
 
 make \
