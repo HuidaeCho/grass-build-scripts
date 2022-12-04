@@ -51,6 +51,7 @@ for i in \
 	liblapack.dll \
 	liblzma-5.dll \
 	libmfhdf-0.dll \
+	libminizip.dll \
 	libmysqlclient.dll \
 	libnetcdf.dll \
 	libopenjp2.dll \
