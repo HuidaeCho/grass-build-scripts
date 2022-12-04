@@ -15,6 +15,8 @@ Usage: merge.sh [OPTIONS]
     --addons    merge GRASS addons (default: GRASS)
     --gdal      merge gdal-grass
 EOT
+	exit
+	;;
 "")
 	cd $GRASS_SRC
 	;;
