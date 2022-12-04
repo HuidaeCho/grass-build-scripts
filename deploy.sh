@@ -25,7 +25,7 @@ fi
 grass_build_scripts=$(dirname $(realpath $0))
 
 # NOTE: add your options here
-$grass_build_scripts/build.sh --update --package
+$grass_build_scripts/build.sh --merge -addons --mxe --package
 
 arch=x86_64-w64-mingw32
 version=`sed -n '/^INST_DIR[ \t]*=/{s/^.*grass//; p}' include/Make/Platform.make`
