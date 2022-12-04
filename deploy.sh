@@ -40,7 +40,7 @@ for dir; do
 		dir=`echo $dir | sed 's/^-//'`
 		;;
 	esac
-	test -d $dir || mkdir -p $dir
+	[ -d $dir ] || mkdir -p $dir
 	if [ $delete -eq 1 ]; then
 		rm -f $dir/grass*-$arch-*.zip
 	fi

@@ -39,7 +39,7 @@ case "$opt" in
 	make "$@"
 	;;
 -a|-A|--addons|--addon)
-	test "$opt" = "--addons" && cd $GRASS_ADDONS_SRC/src
+	[ "$opt" = "--addons" ] && cd $GRASS_ADDONS_SRC/src
 	make \
 	MODULE_TOPDIR=$GRASS_SRC \
 	LIBREDWGLIBPATH=-L$LIBREDWG_LIB \

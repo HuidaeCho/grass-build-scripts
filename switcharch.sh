@@ -13,7 +13,7 @@ backup() {
 		include/Make/Doxyfile_arch_latex \
 		error.log \
 	; do
-		test -f $i && cp -a $i $i.$arch
+		[ -f $i ] && cp -a $i $i.$arch
 	done
 }
 
@@ -25,7 +25,7 @@ restore() {
 		include/Make/Doxyfile_arch_latex \
 		error.log \
 	; do
-		test -f $i.$arch && cp -a $i.$arch $i
+		[ -f $i.$arch ] && cp -a $i.$arch $i
 	done
 }
 

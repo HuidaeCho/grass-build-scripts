@@ -14,12 +14,12 @@ if [ ! -d $build_dist ]; then
 fi
 
 for dist in dist.*; do
-	test $dist = $build_dist && continue
+	[ $dist = $build_dist ] && continue
 	for i in \
 		docs \
 		gui/wxpython/xml \
 	; do
-		test -d $build_dist/$i || continue
+		[ -d $build_dist/$i ] || continue
 		rm -rf $dist/$i
 		cp -a $build_dist/$i $dist/$i
 	done
