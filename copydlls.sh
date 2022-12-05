@@ -22,11 +22,11 @@ if [ ! -d $dist ]; then
 fi
 
 peldd --ignore-errors -a --no-path \
-    --path $dist/lib \
-    --path $mxe_shared/bin \
-    $dist/lib/*.dll |
-    sed '/\/mxe\//!d' |
-    xargs -r cp -a -t $dist/lib
+	--path $dist/lib \
+	--path $mxe_shared/bin \
+	$dist/lib/*.dll |
+	sed '/\/mxe\//!d' |
+	xargs -r cp -a -t $dist/lib
 
 for i in \
 	proj \

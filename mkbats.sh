@@ -15,5 +15,4 @@ rm -f bin.$arch/grass dist.$arch/grass.tmp
 unix2dos -n $grass_build_scripts/grass.bat bin.$arch/grass.bat
 unix2dos -n $grass_build_scripts/sh.bat dist.$arch/etc/sh.bat
 
-wget -O dist.$arch/etc/busybox64.exe \
-    https://frippery.org/files/busybox/busybox64.exe
+wget -O dist.$arch/etc/busybox64.exe https://frippery.org/files/busybox/busybox64.exe
