@@ -22,3 +22,4 @@ ln -s dist.$arch grass
 rm -f grass*-$arch-*.zip
 zip -r grass$version-$arch-$date.zip grass -x "*/__pycache__/*"
 rm -f grass
+rm -f dist.$arch/grass.bat
