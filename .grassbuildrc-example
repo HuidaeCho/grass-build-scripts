@@ -1,5 +1,5 @@
 # Cross-compilation environment
-# https://mxe.cc/
+# https://github.com/mxe/mxe
 MXE_DIR=$HOME/usr/local/src/mxe
 
 ################################################################################
