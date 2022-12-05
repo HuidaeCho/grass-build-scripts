@@ -5,8 +5,7 @@
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 
-grass_build_scripts=$(dirname $(realpath $0))
-arch=`$grass_build_scripts/switcharch.sh --query`
+arch=`$(dirname $(realpath $0))/switcharch.sh --query`
 
 case "$1" in
 -h|--help)

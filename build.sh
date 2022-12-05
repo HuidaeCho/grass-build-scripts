@@ -4,8 +4,6 @@
 set -e
 . ${GRASSBUILDRC-~/.grassbuildrc}
 
-grass_build_scripts=$(dirname $(realpath $0))
-
 merge=0
 addons=0
 gdal=0
@@ -48,7 +46,7 @@ EOT
 	esac
 done
 
-export PATH="$grass_build_scripts:$PATH"
+export PATH="$(dirname $(realpath $0)):$PATH"
 
 echo "Started compilation: `date`"
 echo
