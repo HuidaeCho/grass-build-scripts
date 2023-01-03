@@ -19,8 +19,16 @@ Usage: make.sh [OPTIONS] [TARGETS]
 EOT
 	exit
 	;;
--a|-A|-g|--addons|--addon|--gdal)
-	opt=$1
+-a|--addons)
+	opt="addons"
+	shift
+	;;
+-A|--addon)
+	opt="addon"
+	shift
+	;;
+-g|--gdal)
+	opt="gdal"
 	shift
 	;;
 -*)
@@ -38,7 +46,7 @@ case "$opt" in
 	make "$@"
 	;;
 -a|-A|--addons|--addon)
-	[ "$opt" = "--addons" ] && cd $GRASS_ADDONS_SRC/src
+	[ "$opt" = "addons" ] && cd $GRASS_ADDONS_SRC/src
 	make \
 	MODULE_TOPDIR=$GRASS_SRC \
 	LIBREDWGLIBPATH=-L$LIBREDWG_LIB \
@@ -51,7 +59,7 @@ case "$opt" in
 	;;
 esac
 
-if [ "$opt" != "-g" -a "$opt" != "--gdal" ]; then
+if [ "$opt" != "gdal" ]; then
 	cd $GRASS_SRC
 	for i in \
 		error.log \
