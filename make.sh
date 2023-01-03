@@ -45,7 +45,7 @@ case "$opt" in
 	cd $GRASS_SRC
 	make "$@"
 	;;
--a|-A|--addons|--addon)
+addons|addon)
 	[ "$opt" = "addons" ] && cd $GRASS_ADDONS_SRC/src
 	make \
 	MODULE_TOPDIR=$GRASS_SRC \
@@ -53,7 +53,7 @@ case "$opt" in
 	LIBREDWGINCPATH=-I$LIBREDWG_INC \
 	"$@"
 	;;
--g|--gdal)
+gdal)
 	cd $GDAL_GRASS_SRC
 	make "$@"
 	;;
