@@ -15,4 +15,8 @@ rm -f bin.$arch/grass dist.$arch/grass.tmp
 unix2dos -n $scripts/grass.bat bin.$arch/grass.bat
 unix2dos -n $scripts/sh.bat dist.$arch/etc/sh.bat
 
-wget -O dist.$arch/etc/busybox64.exe https://frippery.org/files/busybox/busybox64.exe
+if wget -O dist.$arch/etc/busybox64.exe https://frippery.org/files/busybox/busybox64.exe; then
+	cp -a dist.$arch/etc/busybox64.exe .
+else
+	cp -a busybox64.exe dist.$arch/etc
+fi
