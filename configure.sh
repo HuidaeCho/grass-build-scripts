@@ -40,7 +40,7 @@ EOT
 	--with-geos \
 	--with-netcdf \
 	--with-liblas \
-	--with-pdal \
+	--with-pdal
 	;;
 -M|--mxe)
 	cd $GRASS_SRC
@@ -73,6 +73,7 @@ EOT
 	--with-netcdf=$mxe_shared/bin/nc-config \
 	--with-gdal=$mxe_shared/bin/gdal-config \
 	--with-opengl=windows \
+	--without-pdal
 	;;
 -g|--gdal)
 	cd $GDAL_GRASS_SRC
