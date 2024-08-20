@@ -39,7 +39,6 @@ EOT
 	--with-lapack \
 	--with-geos \
 	--with-netcdf \
-	--with-liblas \
 	--with-pdal
 	;;
 -M|--mxe)
