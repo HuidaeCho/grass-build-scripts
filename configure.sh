@@ -76,10 +76,12 @@ EOT
 	;;
 -g|--gdal)
 	cd $GDAL_GRASS_SRC
-	CXX="g++ -std=c++11" \
-	./configure \
-	--with-grass=$GRASS_SRC/dist.$build_arch \
-	--with-autoload=$GDAL_PLUGINS_DIR
+	rm -rf build
+	mkdir build
+	cd build
+	cmake .. \
+	-DGRASS_BIN=$GRASS_SRC/bin.$build_arch/grass \
+	-DAUTOLOAD_DIR=$GDAL_PLUGINS_DIR
 	;;
 -G|--gdal-mxe)
 	echo "gdal-grass doesn't support cross-compilation!"

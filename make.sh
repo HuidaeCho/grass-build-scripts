@@ -54,7 +54,7 @@ addons|addon)
 	"$@"
 	;;
 gdal)
-	cd $GDAL_GRASS_SRC
+	cd $GDAL_GRASS_SRC/build
 	make "$@"
 	;;
 esac
